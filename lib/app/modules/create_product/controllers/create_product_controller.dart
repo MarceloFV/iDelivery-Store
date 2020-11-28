@@ -33,6 +33,8 @@ class CreateProductController extends GetxController {
       ),
       storeReference: _storeReference,
     );
+    //TODO: Criar funcao que adiciona o produto nos produtos
+    //TODO: Criar funcao que adiciona o produto na lista de referencias da store
     await _addProduct(product);
     Get.back(result: product);
   }

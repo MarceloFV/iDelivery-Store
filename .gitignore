@@ -31,8 +31,8 @@
 .pub/
 /build/
 *.json
-/android
-/ios
+/android/
+/ios/
 
 # Web related
 lib/generated_plugin_registrant.dart

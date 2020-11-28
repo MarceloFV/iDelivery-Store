@@ -1,18 +1,16 @@
 import 'package:delivery_store/app/data/model/product_model.dart';
-import 'package:delivery_store/app/data/model/store_model.dart';
-import 'package:delivery_store/app/data/model/user_model.dart';
-import 'package:delivery_store/app/data/repository/product_repository.dart';
+import 'package:delivery_store/app/data/repository/request_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LayoutController extends GetxController {
-  final ProductRepository productRepository;
+  final RequestRepository repository;
 
-  LayoutController({this.productRepository});
+  LayoutController({this.repository});
 
-  StoreModel _store;
-  UserModel _user;
+  // StoreModel _store;
+  // UserModel _user;
 
   final _currentIndex = 0.obs;
 
@@ -29,16 +27,16 @@ class LayoutController extends GetxController {
   void onInit() {
     // _store = Get.arguments['store'];
     // _user = Get.arguments['user'];
-    getProducts();
+    // getProducts();
     super.onInit();
   }
 
-  void getProducts() async {
-    _productList.value = await productRepository.getAll();
-  }
+  // void getProducts() async {
+  //   _productList.value = await repository.getAll();
+  // }
 //TODO: Vou deixar essa parte para o final para poder trabalahar com as duas aplicacoes ao mesmo tempo
   getRequests() async {
-    final stream = await productRepository.getStream();
+    final stream = await repository.getStream();
     stream.listen((event) {
       print(event);
     });

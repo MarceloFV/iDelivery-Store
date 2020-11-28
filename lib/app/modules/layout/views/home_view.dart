@@ -15,7 +15,9 @@ class HomeView extends GetView {
         backgroundColor: Colors.white,
       ),
       body: ListView.builder(
-        itemBuilder: (context, index) {},
+        itemBuilder: (context, index) {
+          return Container();
+        },
       ),
     );
   }

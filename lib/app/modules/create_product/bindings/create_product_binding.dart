@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:delivery_store/app/data/provider/firebase_provider.dart';
+import 'package:delivery_store/app/data/provider/product_provider.dart';
 import 'package:delivery_store/app/data/repository/product_repository.dart';
 import 'package:get/get.dart';
 
@@ -11,9 +11,10 @@ class CreateProductBinding extends Bindings {
     Get.lazyPut<CreateProductController>(
       () => CreateProductController(
         productRepository: ProductRepository(
-          provider: FirebaseProvider(
+          provider: ProductProvider(
             firestore: FirebaseFirestore.instance,
           ),
+
         ),
       ),
     );

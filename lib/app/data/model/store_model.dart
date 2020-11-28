@@ -26,4 +26,56 @@ class StoreModel {
         'phoneNumber': this.phoneNumber,
         'userReference': this.userReference
       };
+
+  StoreModel copyWith({
+    String title,
+    String phoneNumber,
+    DocumentReference reference,
+    DocumentReference userReference,
+  }) {
+    return StoreModel(
+      title: title ?? this.title,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      reference: reference ?? this.reference,
+      userReference: userReference ?? this.userReference,
+    );
+  }
+
+  // @override
+  // bool operator ==(Object o) {
+  //   if (identical(this, o)) return true;
+  
+  //   return o is StoreModel &&
+  //     o.title == title &&
+  //     o.phoneNumber == phoneNumber &&
+  //     o.reference == reference &&
+  //     o.userReference == userReference;
+  // }
+
+  // @override
+  // int get hashCode {
+  //   return title.hashCode ^
+  //     phoneNumber.hashCode ^
+  //     reference.hashCode ^
+  //     userReference.hashCode;
+  // }
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is StoreModel &&
+      o.title == title &&
+      o.phoneNumber == phoneNumber &&
+      o.reference == reference &&
+      o.userReference == userReference;
+  }
+
+  @override
+  int get hashCode {
+    return title.hashCode ^
+      phoneNumber.hashCode ^
+      reference.hashCode ^
+      userReference.hashCode;
+  }
 }

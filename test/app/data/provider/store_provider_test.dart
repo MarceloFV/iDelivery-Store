@@ -80,9 +80,11 @@ main() {
       var actualStatus = provider.status;
       var matcherStatus = StoreStatus.Deleted;
       expect(actualStatus, matcherStatus);
-      expect(actual, matcher);
+      expectLater(actual, matcher);
     });
-  });
+  }, skip: false);
 
-  group('Store Provider > Product CRUD', () {});
+  group('Store Provider > Product CRUD', () {
+
+  });
 }

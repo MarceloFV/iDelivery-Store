@@ -4,6 +4,16 @@ import 'package:meta/meta.dart';
 
 const collectionPath = 'stores';
 
+
+enum StoreStatus {
+  Active,
+  Created,
+  Deleted,
+  Updated,
+  Error,
+}
+
+
 class StoreProvider {
   final FirebaseFirestore firestore;
   StoreProvider({@required this.firestore});
@@ -46,7 +56,6 @@ class StoreProvider {
   }
 
   Future<StoreStatus> deleteStore(StoreModel storeModel) async {
-    //TODO: Pensar em uma forma de retornar valor para ser testado
     try {
       await storeModel.reference.delete();
       status = StoreStatus.Deleted;
@@ -56,12 +65,4 @@ class StoreProvider {
       return StoreStatus.Error;
     }
   }
-}
-
-enum StoreStatus {
-  Active,
-  Created,
-  Deleted,
-  Updated,
-  Error,
 }

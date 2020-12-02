@@ -1,6 +1,5 @@
 import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:delivery_store/app/data/repository/user_repository.dart';
-import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,9 +8,15 @@ class RegisterController extends GetxController {
 
   RegisterController({@required this.repository}) : assert(repository != null);
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController cpfController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
+
+  TextEditingController ruaController = TextEditingController();
+  TextEditingController numeroController = TextEditingController();
+  TextEditingController bairroController = TextEditingController();
+  TextEditingController cepController = TextEditingController();
 
   Worker worker;
 
@@ -19,21 +24,17 @@ class RegisterController extends GetxController {
 
   @override
   void onInit() {
-    worker = ever(newUser, onUserCreated);
     super.onInit();
   }
 
-  onUserCreated(UserModel user) {
-    if (user != null) Get.offAllNamed(Routes.HOME, arguments: {'user': user});
-  }
 
   register() async {
     // try {
-    //   UserModel user = UserModel(
-    //     name: nameController.text,
-    //     email: emailController.text,
-    //     isStore: false,
-    //   );
+      // UserModel user = UserModel(
+      //   name: nameController.text,
+      //   email: emailController.text,
+      //   isStore: true,
+      // );
 
     //   newUser.value =
     //       await repository.createUser(user, passwordController.text);

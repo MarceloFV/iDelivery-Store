@@ -37,7 +37,7 @@ class RegisterController extends GetxController {
     String email = emailController.text;
     String password = passwordController.text;
 
-    var userResponse = repository.createUser(email, password, user);
+    var userResponse = await repository.createUser(email, password, user);
 
     if (userResponse != null)
       Get.offAndToNamed(Routes.HOME, arguments: {'user': userResponse});

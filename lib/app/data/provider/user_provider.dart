@@ -92,4 +92,6 @@ class UserProvider {
       return null;
     }
   }
+
+  login(email, password) {}
 }

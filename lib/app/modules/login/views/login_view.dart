@@ -8,7 +8,7 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Bem-vindo'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -21,18 +21,18 @@ class LoginView extends GetView<LoginController> {
               ),
           TextFormField(
                 decoration: InputDecoration(
-                    hintText: "Password",
+                    hintText: "Senha",
                     errorText: controller.passwordError.value),
                 obscureText: true,
                 onChanged: controller.onPasswordChanged,
               ),
           RaisedButton(
             onPressed: controller.login,
-            child: Text("Confirm"),
+            child: Text("Entrar"),
           ),
           FlatButton(
               onPressed: () => Get.toNamed(Routes.REGISTER),
-              child: Text("Cadastrar"))
+              child: Text("Criar conta"))
         ]),
       ),
     );

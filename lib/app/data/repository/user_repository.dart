@@ -7,4 +7,6 @@ class UserRepository {
   UserRepository({@required this.provider}) : assert(provider != null);
 
   createUser(email, password, user) => provider.create(email, password, user);
+
+  login(email, password) => provider.login(email, password);
 }

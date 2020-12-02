@@ -1,5 +1,6 @@
 import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:delivery_store/app/data/repository/user_repository.dart';
+import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,31 +19,29 @@ class RegisterController extends GetxController {
   TextEditingController bairroController = TextEditingController();
   TextEditingController cepController = TextEditingController();
 
-  Worker worker;
-
-  final newUser = UserModel().obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-
   register() async {
-    // try {
-      // UserModel user = UserModel(
-      //   name: nameController.text,
-      //   email: emailController.text,
-      //   isStore: true,
-      // );
+    Address address = Address(
+      rua: ruaController.text,
+      numero: numeroController.text,
+      bairro: bairroController.text,
+      cep: cepController.text,
+    );
 
-    //   newUser.value =
-    //       await repository.createUser(user, passwordController.text);
-    //   if (Get.isSnackbarOpen) Get.back();
-    //   Get.snackbar("Usuário cadastrado", "Cadastrado com sucesso!");
-    // } catch (e) {
-    //   if (Get.isSnackbarOpen) Get.back();
-    //   Get.snackbar("Falha ao cadastrar usuário", "Tente novamente...");
-    // }
+    UserModel user = UserModel(
+      name: nameController.text,
+      cpf: cpfController.text,
+      email: emailController.text,
+      adress: address,
+    );
+
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    var userResponse = repository.createUser(email, password, user);
+
+    if (userResponse != null)
+      Get.offAndToNamed(Routes.HOME, arguments: {'user': userResponse});
+    else
+      print('algo deu errado'); //TODO: Definir erro
   }
 }

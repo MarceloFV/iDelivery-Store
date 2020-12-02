@@ -14,7 +14,7 @@ class LoginBinding extends Bindings {
           repository: UserRepository(
             provider: UserProvider(
               firestore: FirebaseFirestore.instance,
-              firebaseAuth: FirebaseAuth.instance,
+              auth: FirebaseAuth.instance,
             ),
           ),
           ),

@@ -4,7 +4,6 @@ import 'package:meta/meta.dart';
 
 const collectionPath = 'stores';
 
-
 enum StoreStatus {
   Active,
   Created,
@@ -12,7 +11,6 @@ enum StoreStatus {
   Updated,
   Error,
 }
-
 
 class StoreProvider {
   final FirebaseFirestore firestore;

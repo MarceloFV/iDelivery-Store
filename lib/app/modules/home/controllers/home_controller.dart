@@ -2,17 +2,13 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-  
-  final count = 0.obs;
+
+  var user;
 
   @override
-  void onInit() {}
-
-  @override
-  void onReady() {}
-
-  @override
-  void onClose() {}
-
-  void increment() => count.value++;
+  void onInit() {
+    user = Get.arguments['user'];
+    print(user);
+    super.onInit();
+  }
 }

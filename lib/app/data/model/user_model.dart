@@ -35,6 +35,11 @@ class UserModel {
 
   factory UserModel.fromJson(String source) =>
       UserModel.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'UserModel(name: $name, cpf: $cpf, email: $email, adress: $adress, reference: $reference)';
+  }
 }
 
 class Address {

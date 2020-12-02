@@ -14,18 +14,17 @@ class LoginView extends GetView<LoginController> {
       body: SafeArea(
         minimum: EdgeInsets.all(32),
         child: Column(children: [
-         TextFormField(
-                decoration: InputDecoration(
-                    hintText: "Email", errorText: controller.emailError.value),
-                controller: controller.emailController,
-              ),
-          TextFormField(
-                decoration: InputDecoration(
-                    hintText: "Senha",
-                    errorText: controller.passwordError.value),
-                obscureText: true,
-                onChanged: controller.onPasswordChanged,
-              ),
+          TextField(
+            decoration: InputDecoration(
+                hintText: "Email", errorText: controller.emailError.value),
+            controller: controller.emailController,
+          ),
+          TextField(
+            decoration: InputDecoration(
+                hintText: "Senha", errorText: controller.passwordError.value),
+            obscureText: true,
+            controller: controller.passwordController,
+          ),
           RaisedButton(
             onPressed: controller.login,
             child: Text("Entrar"),

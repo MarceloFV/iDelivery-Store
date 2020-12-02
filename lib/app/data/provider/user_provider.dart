@@ -7,6 +7,7 @@ const collectionPath = 'storeOwners';
 enum Status {
   Idle,
   Created,
+  Connected,
   Login,
   Error,
 }
@@ -40,11 +41,18 @@ class UserProvider {
     }
   }
 
-  login(email, password) {
-    userStatus = Status.Login;
-
+  login(email, password) async {
     try {
-      
+      userStatus = Status.Login;
+      var credentials = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      var reference =
+          firestore.collection(collectionPath).doc(credentials.user.uid);
+      var snap = await reference.get();
+      var user = UserModel.fromMap(snap.data());
+      user.reference = reference;
+      userStatus = Status.Connected;
+      return user;
     } catch (e) {
       userStatus = Status.Error;
       return null;

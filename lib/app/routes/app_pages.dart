@@ -1,3 +1,7 @@
+import 'package:delivery_store/app/modules/register/views/register_view.dart';
+import 'package:delivery_store/app/modules/register/bindings/register_binding.dart';
+import 'package:delivery_store/app/modules/login/views/login_view.dart';
+import 'package:delivery_store/app/modules/login/bindings/login_binding.dart';
 import 'package:delivery_store/app/modules/home/views/home_view.dart';
 import 'package:delivery_store/app/modules/home/bindings/home_binding.dart';
 import 'package:delivery_store/app/modules/layout/views/layout_view.dart';
@@ -8,7 +12,7 @@ import 'package:get/get.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -25,6 +29,16 @@ class AppPages {
       name: Routes.HOME, 
       page:()=> HomeView(), 
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.LOGIN, 
+      page:()=> LoginView(), 
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: Routes.REGISTER, 
+      page:()=> RegisterView(), 
+      binding: RegisterBinding(),
     ),
   ];
 }

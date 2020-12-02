@@ -1,7 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 const collectionPath = 'storeOwners';
 
-class MyApiClient {
+class UserProvider {
+
+final FirebaseFirestore firestore;
+final FirebaseAuth firebaseAuth;
+
+  UserProvider({this.firestore, this.firebaseAuth});
 
 
 

@@ -10,7 +10,7 @@ class ProductTile extends StatelessWidget {
     return Card(
       child: ListTile(
         // leading: , //TODO: Implement image system
-        title: Text(product.name),
+        title: Text(product.title),
         subtitle: Text("Desct"), // TODO: Implement desc on productModel
         trailing: Text(product.value.toString()),
       ),

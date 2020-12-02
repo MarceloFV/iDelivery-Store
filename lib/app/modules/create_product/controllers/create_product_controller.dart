@@ -27,7 +27,7 @@ class CreateProductController extends GetxController {
 
   void onAddProductPressed() async {
     ProductModel product = ProductModel(
-      name: nameController.text,
+      title: nameController.text,
       value: double.parse(
         valueController.text,
       ),

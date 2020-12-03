@@ -7,9 +7,17 @@ class UserModel {
   final String cpf;
   final String email;
   final Address adress;
+  DocumentReference store;
   DocumentReference reference;
 
-  UserModel({this.name, this.cpf, this.email, this.adress});
+  UserModel({
+    this.name,
+    this.cpf,
+    this.email,
+    this.adress,
+    this.store,
+    this.reference,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -19,6 +27,10 @@ class UserModel {
       'adress': adress?.toMap(),
     };
   }
+
+  factory UserModel.fromDocumentSnapshot(DocumentSnapshot snapshot) =>
+      UserModel.fromMap(snapshot.data()).copyWith(
+          reference: snapshot.reference, store: snapshot.data()['store']);
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
@@ -39,6 +51,24 @@ class UserModel {
   @override
   String toString() {
     return 'UserModel(name: $name, cpf: $cpf, email: $email, adress: $adress, reference: $reference)';
+  }
+
+  UserModel copyWith({
+    String name,
+    String cpf,
+    String email,
+    Address adress,
+    DocumentReference store,
+    DocumentReference reference,
+  }) {
+    return UserModel(
+      name: name ?? this.name,
+      cpf: cpf ?? this.cpf,
+      email: email ?? this.email,
+      adress: adress ?? this.adress,
+      store: store ?? this.store,
+      reference: reference ?? this.reference,
+    );
   }
 }
 

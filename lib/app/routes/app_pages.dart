@@ -1,3 +1,7 @@
+import 'package:delivery_store/app/modules/create_store/views/create_store_view.dart';
+import 'package:delivery_store/app/modules/create_store/bindings/create_store_binding.dart';
+import 'package:delivery_store/app/modules/splash/views/splash_view.dart';
+import 'package:delivery_store/app/modules/splash/bindings/splash_binding.dart';
 import 'package:delivery_store/app/modules/register/views/register_view.dart';
 import 'package:delivery_store/app/modules/register/bindings/register_binding.dart';
 import 'package:delivery_store/app/modules/login/views/login_view.dart';
@@ -12,7 +16,7 @@ import 'package:get/get.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -39,6 +43,16 @@ class AppPages {
       name: Routes.REGISTER, 
       page:()=> RegisterView(), 
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: Routes.SPLASH, 
+      page:()=> SplashView(), 
+      binding: SplashBinding(),
+    ),
+    GetPage(
+      name: Routes.CREATE_STORE, 
+      page:()=> CreateStoreView(), 
+      binding: CreateStoreBinding(),
     ),
   ];
 }

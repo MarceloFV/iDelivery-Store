@@ -58,4 +58,15 @@ class UserProvider {
       return null;
     }
   }
+
+  Future<UserModel> getCurrentUser() async {
+    try {
+      var uid = auth.currentUser.uid;
+      var snap = await firestore.collection(collectionPath).doc(uid).get();
+      UserModel user = UserModel.fromDocumentSnapshot(snap);
+      return user;
+    } catch (e) {
+      return null;
+    }
+  }
 }

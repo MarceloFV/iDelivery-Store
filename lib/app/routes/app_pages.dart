@@ -1,3 +1,5 @@
+import 'package:delivery_store/app/modules/request/views/request_view.dart';
+import 'package:delivery_store/app/modules/request/bindings/request_binding.dart';
 import 'package:delivery_store/app/modules/create_store/views/create_store_view.dart';
 import 'package:delivery_store/app/modules/create_store/bindings/create_store_binding.dart';
 import 'package:delivery_store/app/modules/splash/views/splash_view.dart';
@@ -53,6 +55,11 @@ class AppPages {
       name: Routes.CREATE_STORE, 
       page:()=> CreateStoreView(), 
       binding: CreateStoreBinding(),
+    ),
+    GetPage(
+      name: Routes.REQUEST, 
+      page:()=> RequestView(), 
+      binding: RequestBinding(),
     ),
   ];
 }

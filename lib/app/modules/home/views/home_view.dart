@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; 
+import 'package:get/get.dart';
 import 'package:delivery_store/app/modules/home/controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -7,16 +7,83 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomeView'),
+        title: Text('Olá'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'HomeView is working', 
-          style: TextStyle(fontSize:20),
+      drawer: _drawer(),
+      body: Container(
+        child: Center(
+          child: Obx(() => ElevatedButton(
+                child: controller.isOpen.value
+                    ? Text('Fechar loja')
+                    : Text('Abrir loja'),
+                style: controller.isOpen.value
+                    ? ElevatedButton.styleFrom(primary: Colors.red)
+                    : null,
+                onPressed: controller.onOpenCloseStorePressed,
+              )),
+        ),
+      ),
+    );
+  }
+
+  _drawer() {
+    return Drawer(
+      child: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            // DrawerHeader(
+            //   child: Text('Drawer Header'),
+            //   decoration: BoxDecoration(
+            //     color: Colors.blue,
+            //   ),
+            // ),
+            ListTile(
+              leading: FlutterLogo(),
+              title: Text('UaiDelivery'),
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Página inicial'),
+              onTap: () {
+                Get.back();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.store),
+              title: Text('Loja'),
+              onTap: () {
+                //TODO: Implement goto store page
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.menu),
+              title: Text('Produtos'),
+              onTap: () {
+                //TODO: Implement goto products page
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.history),
+              title: Text('Histórico de pedidos'),
+              onTap: () {
+                //TODO: Implement goto history page
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Perfil'),
+              onTap: () {
+                //TODO: Implement goto profile page
+              },
+            )
+            
+          ],
         ),
       ),
     );
   }
 }
-  

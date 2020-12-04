@@ -40,7 +40,7 @@ class RegisterController extends GetxController {
     var userResponse = await repository.createUser(email, password, user);
 
     if (userResponse != null)
-      Get.offAllNamed(Routes.HOME, arguments: {'user': userResponse});
+      Get.offAllNamed(Routes.CREATE_STORE, arguments: {'user': userResponse});
     else
       print('algo deu errado'); //TODO: Definir erro
   }

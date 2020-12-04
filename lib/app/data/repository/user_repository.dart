@@ -12,4 +12,8 @@ class UserRepository {
   login(email, password) => provider.login(email, password);
 
   getCurrentUser() => provider.getCurrentUser();
+
+  getCurrentUserId() => provider.getCurrentUserId();
+
+  updateUser(UserModel user) => provider.updateUser(user);
 }

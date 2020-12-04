@@ -61,9 +61,24 @@ class UserProvider {
 
   Future<UserModel> getCurrentUser() async {
     try {
-      var uid = auth.currentUser.uid;
+      var uid = getCurrentUserId();
       var snap = await firestore.collection(collectionPath).doc(uid).get();
       UserModel user = UserModel.fromDocumentSnapshot(snap);
+      return user;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  String getCurrentUserId() => auth.currentUser.uid;
+
+  updateUser(UserModel user) {
+    try {
+      firestore
+          .collection(collectionPath)
+          .doc(getCurrentUserId())
+          .update(user.toMap());
+
       return user;
     } catch (e) {
       return null;

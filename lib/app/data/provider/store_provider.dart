@@ -18,13 +18,13 @@ class StoreProvider {
 
   StoreStatus status;
 
-  Future<StoreModel> createStore(StoreModel storeModel) async {
+  createStore(String uid, StoreModel store) async {
     try {
-      var ref =
-          await firestore.collection(collectionPath).add(storeModel.toJson());
-      storeModel = storeModel.copyWith(reference: ref);
+      var ref = firestore.collection(collectionPath).doc(uid);
+      await ref.set(store.toMap());
       status = StoreStatus.Created;
-      return storeModel;
+      store = store.copyWith(reference: ref);
+      return store;
     } catch (e) {
       status = StoreStatus.Error;
       return null;
@@ -33,7 +33,7 @@ class StoreProvider {
 
   Future<StoreModel> updateStore(StoreModel storeModel) async {
     try {
-      await storeModel.reference.update(storeModel.toJson());
+      await storeModel.reference.update(storeModel.toMap());
       status = StoreStatus.Updated;
       return storeModel;
     } catch (e) {

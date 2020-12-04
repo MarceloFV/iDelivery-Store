@@ -1,18 +1,37 @@
+import 'package:delivery_store/app/data/model/store_model.dart';
+import 'package:delivery_store/app/data/model/user_model.dart';
+import 'package:delivery_store/app/data/repository/store_repository.dart';
+import 'package:delivery_store/app/data/repository/user_repository.dart';
+import 'package:delivery_store/app/routes/app_pages.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CreateStoreController extends GetxController {
-  //TODO: Implement CreateStoreController
-  
-  final count = 0.obs;
+  final StoreRepository storeRepository;
+  final UserRepository userRepository;
 
-  @override
-  void onInit() {}
+  CreateStoreController(
+      {@required this.storeRepository, @required this.userRepository});
 
-  @override
-  void onReady() {}
+  var titleController = TextEditingController();
+  var phoneController = TextEditingController();
+  var shipController = TextEditingController();
 
-  @override
-  void onClose() {}
+  onCreateStoreBtnPressed() async {
+    //TODO: Conferir fluxo de envio
+    // Criar a loja com o mesmo uid, salvar a referencia dentro do store owner
+    StoreModel storeModel = StoreModel(
+      title: titleController.text,
+      phoneNumber: phoneController.text,
+      shipPrice: double.parse(shipController.text),
+    ); // TODO: Implement
+    String uid = userRepository.getCurrentUserId();
+    StoreModel store = await storeRepository.createStore(uid, storeModel);
+    UserModel user = Get.arguments['user'];
+    user = user.copyWith(store: store.reference);
+    user = await userRepository.updateUser(user);
 
-  void increment() => count.value++;
+    if (user != null) if (user.store != null)
+      Get.offAllNamed(Routes.HOME, arguments: {'store': store, 'user': user});
+  }
 }

@@ -19,10 +19,13 @@ class SplashController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onClose() {
+    worker.dispose();
+  }
+
   fetchUser() async {
-    print(user.value);
     user.value = await repository.getCurrentUser();
-    print(user.value);
   }
 
   onUserChanged(UserModel u) {

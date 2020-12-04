@@ -17,20 +17,17 @@ class CreateStoreController extends GetxController {
   var phoneController = TextEditingController();
   var shipController = TextEditingController();
 
-  onCreateStoreBtnPressed() async {
-    //TODO: Conferir fluxo de envio
-    // Criar a loja com o mesmo uid, salvar a referencia dentro do store owner
+  onCreateStorePressed() async {
     StoreModel storeModel = StoreModel(
       title: titleController.text,
       phoneNumber: phoneController.text,
       shipPrice: double.parse(shipController.text),
-    ); // TODO: Implement
+    );
     String uid = userRepository.getCurrentUserId();
     StoreModel store = await storeRepository.createStore(uid, storeModel);
     UserModel user = Get.arguments['user'];
     user = user.copyWith(store: store.reference);
-    user = await userRepository.updateUser(user);
-
+    user = await userRepository.attachStoreToUser(user);
     if (user != null) if (user.store != null)
       Get.offAllNamed(Routes.HOME, arguments: {'store': store, 'user': user});
   }

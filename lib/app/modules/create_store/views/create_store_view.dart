@@ -29,7 +29,7 @@ class CreateStoreView extends GetView<CreateStoreController> {
               decoration: InputDecoration(hintText: "Valor frete"),
             ),
             TextButton(
-              onPressed: controller.onCreateStoreBtnPressed,
+              onPressed: controller.onCreateStorePressed,
               child: Text('Confirmar'),
             ),
           ],

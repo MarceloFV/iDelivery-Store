@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -78,6 +79,20 @@ class UserProvider {
           .collection(collectionPath)
           .doc(getCurrentUserId())
           .update(user.toMap());
+
+      return user;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  attachStoreToUser(UserModel user) {
+    //TODO: adicionar store ao user reference
+    try {
+       firestore
+          .collection(collectionPath)
+          .doc(getCurrentUserId())
+          .update({'store': user.store});
 
       return user;
     } catch (e) {

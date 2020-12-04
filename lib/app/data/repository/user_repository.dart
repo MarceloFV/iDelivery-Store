@@ -1,3 +1,4 @@
+import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:delivery_store/app/data/provider/user_provider.dart';
 import 'package:meta/meta.dart';
@@ -16,4 +17,7 @@ class UserRepository {
   getCurrentUserId() => provider.getCurrentUserId();
 
   updateUser(UserModel user) => provider.updateUser(user);
+
+  attachStoreToUser(UserModel user) =>
+      provider.attachStoreToUser(user);
 }

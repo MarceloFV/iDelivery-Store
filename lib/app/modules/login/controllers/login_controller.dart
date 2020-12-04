@@ -39,14 +39,16 @@ class LoginController extends GetxController {
   }
 
   login() async {
-    print('login');
     String email = emailController.text;
     String password = passwordController.text;
-    var userResponse = await repository.login(email, password);
-    if (userResponse != null)
-      Get.offAndToNamed(Routes.HOME, arguments: {'user': userResponse});
-    else
-      print('userResponse ta null');
-    print('nem sei se foi mas passou do userResposne');
+    UserModel userResponse = await repository.login(email, password);
+    if (userResponse != null) {
+      if (userResponse.store != null) {
+        return Get.offAndToNamed(Routes.HOME,
+            arguments: {'user': userResponse});
+      }
+      return Get.offAllNamed(Routes.CREATE_STORE,
+          arguments: {'user': userResponse});
+    }
   }
 }

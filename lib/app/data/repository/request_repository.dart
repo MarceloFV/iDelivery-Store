@@ -8,7 +8,7 @@ final RequestProvider provider;
 
 RequestRepository({@required this.provider}) : assert(provider != null);
 
-  Future<Stream<QuerySnapshot>> getStream() => provider.getRequests();
+getStream(String uid) => provider.requestListStream(uid);
 
 //TODO: Implement request_rep
 }

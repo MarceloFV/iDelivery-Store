@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StoreModel {
+  // final String uid;
   final String title;
   final String phoneNumber;
   final double shipPrice;

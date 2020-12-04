@@ -36,10 +36,10 @@ class LayoutController extends GetxController {
   // }
 //TODO: Vou deixar essa parte para o final para poder trabalahar com as duas aplicacoes ao mesmo tempo
   getRequests() async {
-    final stream = await repository.getStream();
-    stream.listen((event) {
-      print(event);
-    });
+    // final stream = await repository.getStream();
+    // stream.listen((event) {
+    //   print(event);
+    // });
   }
 
   // @override

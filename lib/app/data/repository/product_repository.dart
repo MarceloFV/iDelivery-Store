@@ -11,6 +11,7 @@ class ProductRepository {
 
   add(ProductModel product) => provider.addProduct(product);
 
+  getProducts() => provider.getProductList();
 
   //TODO: Implement ProductRepository
 }

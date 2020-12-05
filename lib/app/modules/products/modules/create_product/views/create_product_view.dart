@@ -1,6 +1,6 @@
+import 'package:delivery_store/app/modules/products/modules/create_product/controllers/create_product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:delivery_store/app/modules/create_product/controllers/create_product_controller.dart';
 
 class CreateProductView extends GetView<CreateProductController> {
   @override

@@ -9,9 +9,9 @@ class ProductProvider {
 
   ProductProvider({@required this.firestore});
 
-  getProductList() {}
+  Future<List<ProductModel>> getProductList() {
+    return Future.delayed(Duration(seconds: 1)).then((_) => []);
+  }
 
   addProduct(ProductModel product) {}
-
-  
 }

@@ -1,5 +1,6 @@
+import 'package:delivery_store/app/data/model/product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; 
+import 'package:get/get.dart';
 import 'package:delivery_store/app/modules/products/controllers/products_controller.dart';
 
 class ProductsView extends GetView<ProductsController> {
@@ -14,7 +15,31 @@ class ProductsView extends GetView<ProductsController> {
         onPressed: controller.onAddProductPressed,
         child: Text("Adicionar produto"),
       ),
+      body: ListView(
+        children:
+        //  (controller.productList == null)
+        //     ? CircularProgressIndicator()
+        //     : 
+            controller.productList
+                .map<ProductCard>((product) => ProductCard(
+                      product: product,
+                    ))
+                .toList(),
+      ),
     );
   }
 }
-  
+
+class ProductCard extends StatelessWidget {
+  final ProductModel product;
+
+  const ProductCard({Key key, this.product}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text(product.title),
+      ),
+    );
+  }
+}

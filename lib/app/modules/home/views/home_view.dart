@@ -61,9 +61,7 @@ class HomeView extends GetView<HomeController> {
             ListTile(
               leading: Icon(Icons.menu),
               title: Text('Produtos'),
-              onTap: () {
-                //TODO: Implement goto products page
-              },
+              onTap: controller.onDrawerProductsPressed,
             ),
             Divider(),
             ListTile(

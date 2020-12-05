@@ -16,15 +16,11 @@ class ProductsView extends GetView<ProductsController> {
         child: Text("Adicionar produto"),
       ),
       body: ListView(
-        children:
-        //  (controller.productList == null)
-        //     ? CircularProgressIndicator()
-        //     : 
-            controller.productList
-                .map<ProductCard>((product) => ProductCard(
-                      product: product,
-                    ))
-                .toList(),
+        children: controller.productList //TODO: Testar como fica quando deixar muito tempo carregando
+            .map<ProductCard>((product) => ProductCard(
+                  product: product,
+                ))
+            .toList(),
       ),
     );
   }

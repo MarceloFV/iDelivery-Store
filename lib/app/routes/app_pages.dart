@@ -20,7 +20,7 @@ import 'package:get/get.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.PRODUCTS;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum CategoryType {
@@ -14,7 +16,7 @@ class ProductModel {
   final String imgUrl;
   final String title;
   final String description;
-  final CategoryType category;
+  // final CategoryType category;
   final double value;
   final String storeId;
   final String storeName;
@@ -22,15 +24,15 @@ class ProductModel {
   final bool isFavorite;
   final bool isAvailable;
   final int likes;
-  final DocumentReference storeReference;
-  final DocumentReference reference;
+  // final DocumentReference storeReference;
+  // final DocumentReference reference;
 
   ProductModel(
       {this.id,
       this.imgUrl,
       this.title,
       this.description,
-      this.category,
+      // this.category,
       this.value,
       this.storeId,
       this.storeName,
@@ -38,8 +40,9 @@ class ProductModel {
       this.isFavorite,
       this.isAvailable,
       this.likes,
-      this.storeReference,
-      this.reference});
+      // this.storeReference,
+      // this.reference,
+      });
 
   Map<String, dynamic> toMap() {
     return {
@@ -60,4 +63,29 @@ class ProductModel {
     };
   }
 
+
+  factory ProductModel.fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+  
+    return ProductModel(
+      id: map['id'],
+      imgUrl: map['imgUrl'],
+      title: map['title'],
+      description: map['description'],
+      // CategoryType.fromMap(map['category']),
+      value: map['value'],
+      storeId: map['storeId'],
+      storeName: map['storeName'],
+      storeShipPrice: map['storeShipPrice'],
+      isFavorite: map['isFavorite'],
+      isAvailable: map['isAvailable'],
+      likes: map['likes'],
+      // DocumentReference.fromMap(map['storeReference']),
+      // DocumentReference.fromMap(map['reference']),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory ProductModel.fromJson(String source) => ProductModel.fromMap(json.decode(source));
 }

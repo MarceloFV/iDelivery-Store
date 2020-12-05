@@ -1,14 +1,18 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_store/app/data/model/product_model.dart';
+import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/repository/product_repository.dart';
+import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CreateProductController extends GetxController {
   final ProductRepository productRepository;
-  CreateProductController({this.productRepository});
+  final StoreRepository storeRepository;
+  CreateProductController(
+      {@required this.productRepository, @required this.storeRepository});
 
-  DocumentReference _storeReference;
+  final _storeModel = StoreModel().obs;
+  StoreModel get store => _storeModel.value;
 
   TextEditingController _nameController;
   TextEditingController _valueController;
@@ -19,7 +23,7 @@ class CreateProductController extends GetxController {
 
   @override
   void onInit() {
-    // _storeReference = Get.arguments['storeReference']; //TODO: Ajustar envio de parametros
+    _storeModel.value = Get.arguments['store']; //TODO: Ajustar envio de parametros
     _nameController = TextEditingController();
     _valueController = TextEditingController();
     super.onInit();
@@ -31,13 +35,14 @@ class CreateProductController extends GetxController {
       value: double.parse(
         valueController.text,
       ),
-      storeReference: _storeReference,
     );
-    //TODO: Criar funcao que adiciona o produto nos produtos
-    //TODO: Criar funcao que adiciona o produto na lista de referencias da store
     await _addProduct(product);
     Get.back(result: product);
   }
 
-  _addProduct(ProductModel product) => productRepository.add(product);
+  _addProduct(ProductModel product) async {
+    var productReference = await productRepository.add(product);
+    _storeModel.value.menu.add(productReference);
+    await storeRepository.addProductReferenceToMenu(store, productReference);
+  }
 }

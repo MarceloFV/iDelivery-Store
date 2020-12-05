@@ -7,11 +7,11 @@ class ProductRepository {
 
   ProductRepository({@required this.provider}) : assert(provider != null);
 
-  Future<List<ProductModel>> getAll() => provider.getProductList();
+  // Future<List<ProductModel>> getAll() => provider.getProductList();
 
   add(ProductModel product) => provider.addProduct(product);
 
-  getProducts() => provider.getProductList();
+  getProducts(store) => provider.getProductList(store);
 
   //TODO: Implement ProductRepository
 }

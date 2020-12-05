@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_store/app/data/model/store_model.dart';
+import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:meta/meta.dart';
 
 const collectionPath = 'stores';
@@ -53,7 +54,9 @@ class StoreProvider {
     }
   }
 
-  Future<StoreStatus> deleteStore(StoreModel storeModel) async {
+  Future<StoreStatus> deleteStore(
+    StoreModel storeModel,
+  ) async {
     try {
       await storeModel.reference.delete();
       status = StoreStatus.Deleted;
@@ -61,6 +64,28 @@ class StoreProvider {
     } catch (e) {
       status = StoreStatus.Error;
       return StoreStatus.Error;
+    }
+  }
+
+  addProductReferenceToMenu(
+    StoreModel store,
+    DocumentReference productReference,
+  ) async {
+    try {
+      store.reference.update({
+        'menu': FieldValue.arrayUnion([productReference])
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  getStore(UserModel user) async {
+    try {
+      var snap = await user.store.get();
+      return StoreModel.fromDocumentSnapshot(snap);
+    } catch (e) {
+      return null;
     }
   }
 }

@@ -1,5 +1,7 @@
 import 'package:delivery_store/app/data/model/store_model.dart';
+import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:delivery_store/app/data/provider/store_provider.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:meta/meta.dart';
 
 class StoreRepository {
@@ -7,7 +9,11 @@ class StoreRepository {
 
   StoreRepository({@required this.provider}) : assert(provider != null);
 
-  createStore(String uid, StoreModel store) =>
-      provider.createStore(uid, store);
+  createStore(String uid, StoreModel store) => provider.createStore(uid, store);
+
+  addProductReferenceToMenu(store, reference) =>
+      provider.addProductReferenceToMenu(store, reference);
+
+  getStore(UserModel user) => provider.getStore(user);
 //TODO: Implement StoreRepository
 }

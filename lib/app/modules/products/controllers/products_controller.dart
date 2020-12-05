@@ -8,21 +8,27 @@ class ProductsController extends GetxController {
   final ProductRepository repository;
   ProductsController({@required this.repository});
 
+  var store;
+
   final _products = <ProductModel>[].obs;
 
   List<ProductModel> get productList => _products;
 
   @override
   void onInit() {
+    store = Get.arguments['store'];
     _fetchProducts();
     super.onInit();
   }
 
   _fetchProducts() async {
-    _products.assignAll(await repository.getProducts());
+    print('_products : $_products');
+    print('store : $store');
+    // _products.assignAll(await repository.getProducts(store));
   }
 
   void onAddProductPressed() {
-    Get.toNamed(Routes.PRODUCTS+Routes.CREATE_PRODUCT);
+    Get.toNamed(Routes.PRODUCTS + Routes.CREATE_PRODUCT,
+        arguments: {'store': store});
   }
 }

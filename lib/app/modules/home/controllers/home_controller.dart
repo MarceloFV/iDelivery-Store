@@ -27,11 +27,16 @@ class HomeController extends GetxController {
   _openStore() {
     print('Abrindo loja');
     //TODO: Implement openStore method
-    Get.toNamed(Routes.REQUEST, arguments: {'store':store});
+    Get.toNamed(Routes.REQUEST, arguments: {'store': store});
   }
 
   _closeStore() {
     //TODO: Implement closeStore method
     print('Fechando loja');
+  }
+
+  onDrawerProductsPressed() {
+    print('store from home: $store');
+    Get.toNamed(Routes.PRODUCTS, arguments: {'store': store});
   }
 }

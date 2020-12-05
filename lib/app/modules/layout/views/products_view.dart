@@ -17,16 +17,17 @@ class ProductsView extends GetView {
         child: Text("Adicionar produto"),
       ),
       body: SafeArea(
-        child: Obx(() => ListView.builder(
-              itemCount: controller.productList.length,
-              itemBuilder: (context, index) {
-                ProductModel product = controller.productList[index];
-                print(product.toString());
-                return ProductTile(
-                  product: product,
-                );
-              },
-            )),
+        child: Obx(
+          () => ListView.builder(
+            itemCount: controller.productList.length,
+            itemBuilder: (context, index) {
+              ProductModel product = controller.productList[index];
+              return ProductTile(
+                product: product,
+              );
+            },
+          ),
+        ),
       ),
     );
   }

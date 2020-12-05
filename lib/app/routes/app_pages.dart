@@ -1,3 +1,5 @@
+import 'package:delivery_store/app/modules/products/views/products_view.dart';
+import 'package:delivery_store/app/modules/products/bindings/products_binding.dart';
 import 'package:delivery_store/app/modules/request/views/request_view.dart';
 import 'package:delivery_store/app/modules/request/bindings/request_binding.dart';
 import 'package:delivery_store/app/modules/create_store/views/create_store_view.dart';
@@ -60,6 +62,11 @@ class AppPages {
       name: Routes.REQUEST, 
       page:()=> RequestView(), 
       binding: RequestBinding(),
+    ),
+    GetPage(
+      name: Routes.PRODUCTS, 
+      page:()=> ProductsView(), 
+      binding: ProductsBinding(),
     ),
   ];
 }

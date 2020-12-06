@@ -17,7 +17,7 @@ class ProductModel {
   final bool isAvailable;
   final int likes;
   // final CategoryType category;
-  // final DocumentReference reference;
+  // final DocumentReference reference; //TODO: Implement reference
 
   ProductModel({
     this.imgUrl,

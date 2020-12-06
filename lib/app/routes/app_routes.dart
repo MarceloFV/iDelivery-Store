@@ -11,4 +11,7 @@ abstract class Routes {
   static const REQUEST = '/request';
   static const MENU = '/menu';
   static const PRODUCT = '/product';
+  static const PRODCUTS_MODULES_EDIT_PRODUCT = '/prodcuts-modules-edit-product';
+  static const PRODUCTS_MODULES_EDIT_PRODUCT = '/products-modules-edit-product';
+  static const EDIT_PRODUCT = '/menu-modules-edit-product';
 }

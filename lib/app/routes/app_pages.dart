@@ -1,6 +1,8 @@
 import 'package:delivery_store/app/modules/menu/bindings/menu_binding.dart';
 import 'package:delivery_store/app/modules/menu/modules/create_product/bindings/create_product_binding.dart';
 import 'package:delivery_store/app/modules/menu/modules/create_product/views/create_product_view.dart';
+import 'package:delivery_store/app/modules/menu/modules/edit_product/bindings/edit_product_binding.dart';
+import 'package:delivery_store/app/modules/menu/modules/edit_product/views/edit_product_view.dart';
 import 'package:delivery_store/app/modules/menu/modules/product/bindings/product_binding.dart';
 import 'package:delivery_store/app/modules/menu/modules/product/views/product_view.dart';
 import 'package:delivery_store/app/modules/menu/views/menu_view.dart';
@@ -79,6 +81,11 @@ class AppPages {
           transition: Transition.rightToLeft,
         ),
       ],
+    ),
+    GetPage(
+      name: Routes.EDIT_PRODUCT, 
+      page:()=> EditProductView(), 
+      binding: EditProductBinding(),
     ),
   ];
 }

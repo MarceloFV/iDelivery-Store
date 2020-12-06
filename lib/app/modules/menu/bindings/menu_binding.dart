@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 class MenuBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ProductsController>(
-      () => ProductsController(
+    Get.lazyPut<MenuController>(
+      () => MenuController(
         repository: ProductRepository(
           provider: ProductProvider(
             firestore: FirebaseFirestore.instance,

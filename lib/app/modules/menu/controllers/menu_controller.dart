@@ -4,9 +4,9 @@ import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-class ProductsController extends GetxController {
+class MenuController extends GetxController {
   final ProductRepository repository;
-  ProductsController({@required this.repository});
+  MenuController({@required this.repository});
 
   var store;
 

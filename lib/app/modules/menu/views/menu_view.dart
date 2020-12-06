@@ -3,7 +3,7 @@ import 'package:delivery_store/app/modules/menu/controllers/menu_controller.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductsView extends GetView<ProductsController> {
+class MenuView extends GetView<MenuController> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(

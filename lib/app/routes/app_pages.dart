@@ -1,6 +1,6 @@
-import 'package:delivery_store/app/modules/create_product/bindings/create_product_binding.dart';
-import 'package:delivery_store/app/modules/create_product/views/create_product_view.dart';
 import 'package:delivery_store/app/modules/menu/bindings/menu_binding.dart';
+import 'package:delivery_store/app/modules/menu/modules/create_product/bindings/create_product_binding.dart';
+import 'package:delivery_store/app/modules/menu/modules/create_product/views/create_product_view.dart';
 import 'package:delivery_store/app/modules/menu/views/menu_view.dart';
 import 'package:delivery_store/app/modules/product/bindings/product_binding.dart';
 import 'package:delivery_store/app/modules/product/views/product_view.dart';
@@ -62,7 +62,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.MENU,
-      page: () => ProductsView(),
+      page: () => MenuView(),
       binding: MenuBinding(),
       transition: Transition.rightToLeft,
       children: [

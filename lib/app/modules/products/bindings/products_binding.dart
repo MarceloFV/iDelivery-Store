@@ -15,6 +15,7 @@ class ProductsBinding extends Bindings {
           ),
         ),
       ),
+      fenix: true,
     );
   }
 }

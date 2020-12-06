@@ -5,39 +5,42 @@ import 'package:delivery_store/app/modules/products/controllers/products_control
 
 class ProductsView extends GetView<ProductsController> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Produtos'),
-        centerTitle: true,
-      ),
-      bottomNavigationBar: RaisedButton(
-        onPressed: controller.onAddProductPressed,
-        child: Text("Adicionar produto"),
-      ),
-      body: Obx(() => ListView(
-            children: controller
-                .productList
-                .map<ProductCard>((product) => ProductCard(
-                      product: product,
-                    ))
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text('Produtos'),
+          centerTitle: true,
+        ),
+        bottomNavigationBar: RaisedButton(
+          onPressed: controller.onAddProductPressed,
+          child: Text("Adicionar produto"),
+        ),
+        body: Obx(
+          () => ListView(
+            children: controller.productList
+                .map<ProductCard>(
+                  (product) => ProductCard(
+                    product: product,
+                    onTap: controller.onProductCardPressed,
+                  ),
+                )
                 .toList(),
-          )),
-    );
-  }
+          ),
+        ),
+      );
 }
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
+  final Function onTap;
 
-  const ProductCard({Key key, this.product}) : super(key: key);
+  const ProductCard({Key key, this.product, this.onTap}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    print(product.title);
-    return Card(
-      child: ListTile(
-        title: Text(product.title),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Card(
+        child: ListTile(
+          title: Text(product.title),
+          trailing: Text(product.value.toString()),
+          subtitle: Text(product.description),
+          onTap: () => onTap(product),
+        ),
+      );
 }

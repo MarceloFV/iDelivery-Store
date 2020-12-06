@@ -1,5 +1,7 @@
 import 'package:delivery_store/app/modules/products/modules/create_product/bindings/create_product_binding.dart';
 import 'package:delivery_store/app/modules/products/modules/create_product/views/create_product_view.dart';
+import 'package:delivery_store/app/modules/products/modules/product/bindings/product_binding.dart';
+import 'package:delivery_store/app/modules/products/modules/product/views/product_view.dart';
 import 'package:delivery_store/app/modules/products/views/products_view.dart';
 import 'package:delivery_store/app/modules/products/bindings/products_binding.dart';
 import 'package:delivery_store/app/modules/request/views/request_view.dart';
@@ -59,15 +61,24 @@ class AppPages {
       binding: RequestBinding(),
     ),
     GetPage(
-        name: Routes.PRODUCTS,
-        page: () => ProductsView(),
-        binding: ProductsBinding(),
-        children: [
-          GetPage(
-            name: Routes.CREATE_PRODUCT,
-            page: () => CreateProductView(),
-            binding: CreateProductBinding(),
-          ),
-        ],),
+      name: Routes.PRODUCTS,
+      page: () => ProductsView(),
+      binding: ProductsBinding(),
+      transition: Transition.rightToLeft,
+      children: [
+        GetPage(
+          name: Routes.PRODUCT,
+          page: () => ProductView(),
+          binding: ProductBinding(),
+          transition: Transition.rightToLeft,
+        ),
+        GetPage(
+          name: Routes.CREATE_PRODUCT,
+          page: () => CreateProductView(),
+          binding: CreateProductBinding(),
+          transition: Transition.rightToLeft,
+        ),
+      ],
+    ),
   ];
 }

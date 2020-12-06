@@ -14,20 +14,26 @@ class CreateProductView extends GetView<CreateProductController> {
         onPressed: controller.onAddProductPressed,
         child: Text("Adicionar produto"),
       ),
-      body: ListView(
-        children: [
-          TextFormField(
-            controller: controller.nameController,
-            decoration: InputDecoration(hintText: 'Nome'),
-          ),
-          // TODO: Adicionar mascara de texto
-          TextFormField(
-            controller: controller.valueController,
-            decoration: InputDecoration(hintText: 'Valor'),
-            keyboardType: TextInputType.number,
-            onFieldSubmitted: (str) => controller.onAddProductPressed(),
-          ),
-        ],
+      body: SafeArea(
+        minimum: EdgeInsets.all(16),
+              child: ListView(
+          children: [
+            TextFormField(
+              controller: controller.nameController,
+              decoration: InputDecoration(hintText: 'Nome'),
+            ),
+            TextFormField(
+              controller: controller.descriptionController,
+              decoration: InputDecoration(hintText: 'Descrição'),
+            ),
+            // TODO: Adicionar mascara de texto
+            TextFormField(
+              controller: controller.valueController,
+              decoration: InputDecoration(hintText: 'Valor'),
+              keyboardType: TextInputType.number,
+            ),
+          ],
+        ),
       ),
     );
   }

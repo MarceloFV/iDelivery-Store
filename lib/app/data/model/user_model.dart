@@ -6,6 +6,7 @@ class UserModel {
   final String name;
   final String cpf;
   final String email;
+  final String phone;
   final Address adress;
   DocumentReference store;
   DocumentReference reference;
@@ -14,6 +15,7 @@ class UserModel {
     this.name,
     this.cpf,
     this.email,
+    this.phone,
     this.adress,
     this.store,
     this.reference,
@@ -23,6 +25,7 @@ class UserModel {
     return {
       'name': name,
       'cpf': cpf,
+      'phone': phone,
       'email': email,
       'adress': adress?.toMap(),
     };
@@ -38,6 +41,7 @@ class UserModel {
     return UserModel(
       name: map['name'],
       cpf: map['cpf'],
+      phone: map['phone'],
       email: map['email'],
       adress: Address.fromMap(map['adress']),
     );
@@ -50,13 +54,14 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(name: $name, cpf: $cpf, email: $email, adress: $adress, reference: $reference)';
+    return 'UserModel(name: $name, cpf: $cpf, email: $email, phone: $phone, reference: $reference)';
   }
 
   UserModel copyWith({
     String name,
     String cpf,
     String email,
+    String phone,
     Address adress,
     DocumentReference store,
     DocumentReference reference,
@@ -65,6 +70,7 @@ class UserModel {
       name: name ?? this.name,
       cpf: cpf ?? this.cpf,
       email: email ?? this.email,
+      phone: phone ?? this.phone,
       adress: adress ?? this.adress,
       store: store ?? this.store,
       reference: reference ?? this.reference,

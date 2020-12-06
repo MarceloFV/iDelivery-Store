@@ -10,4 +10,5 @@ abstract class Routes {
   static const CREATE_STORE = '/create-store';
   static const REQUEST = '/request';
   static const PRODUCTS = '/products';
+  static const PRODUCT = '/product';
 }

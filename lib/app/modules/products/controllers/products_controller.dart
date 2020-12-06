@@ -17,19 +17,24 @@ class ProductsController extends GetxController {
   @override
   void onInit() {
     store = Get.arguments['store'];
+    print('recriado'); //TODO: Testar se o fenix:true recria o widget
     _fetchProducts();
     super.onInit();
   }
 
   _fetchProducts() async {
-    print('_products : $_products'); //TODO: Decidir extrutura de dados
-    // print('store : $store');
-    // print('')
     _products.assignAll(await repository.getAll(store));
   }
 
-  void onAddProductPressed() {
-    Get.toNamed(Routes.PRODUCTS + Routes.CREATE_PRODUCT,
+  onProductCardPressed(ProductModel product) {
+    Get.toNamed(Routes.PRODUCTS + Routes.PRODUCT,
+        arguments: {'product': product});
+  }
+
+  Future<void> onAddProductPressed() async {
+    // var newProduct = await Get.toNamed(Routes.PRODUCTS + Routes.CREATE_PRODUCT,
+    await Get.toNamed(Routes.PRODUCTS + Routes.CREATE_PRODUCT,
         arguments: {'store': store});
+    // if (newProduct != null) _products.add(newProduct);
   }
 }

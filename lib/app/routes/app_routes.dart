@@ -9,6 +9,6 @@ abstract class Routes {
   static const SPLASH = '/splash';
   static const CREATE_STORE = '/create-store';
   static const REQUEST = '/request';
-  static const PRODUCTS = '/products';
+  static const MENU = '/menu';
   static const PRODUCT = '/product';
 }

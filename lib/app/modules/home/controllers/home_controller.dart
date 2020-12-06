@@ -35,8 +35,8 @@ class HomeController extends GetxController {
     print('Fechando loja');
   }
 
-  onDrawerProductsPressed() {
+  onDrawerMenuPressed() {
     print('store from home: $store');
-    Get.toNamed(Routes.PRODUCTS, arguments: {'store': store});
+    Get.toNamed(Routes.MENU, arguments: {'store': store});
   }
 }

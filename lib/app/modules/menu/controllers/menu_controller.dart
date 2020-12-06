@@ -27,13 +27,13 @@ class ProductsController extends GetxController {
   }
 
   onProductCardPressed(ProductModel product) {
-    Get.toNamed(Routes.PRODUCTS + Routes.PRODUCT,
+    Get.toNamed(Routes.MENU + Routes.PRODUCT,
         arguments: {'product': product});
   }
 
   Future<void> onAddProductPressed() async {
     // var newProduct = await Get.toNamed(Routes.PRODUCTS + Routes.CREATE_PRODUCT,
-    await Get.toNamed(Routes.PRODUCTS + Routes.CREATE_PRODUCT,
+    await Get.toNamed(Routes.MENU + Routes.CREATE_PRODUCT,
         arguments: {'store': store});
     // if (newProduct != null) _products.add(newProduct);
   }

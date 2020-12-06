@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_store/app/data/provider/product_provider.dart';
 import 'package:delivery_store/app/data/repository/product_repository.dart';
+import 'package:delivery_store/app/modules/menu/controllers/menu_controller.dart';
 import 'package:get/get.dart';
-import 'package:delivery_store/app/modules/products/controllers/products_controller.dart';
 
-class ProductsBinding extends Bindings {
+class MenuBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ProductsController>(

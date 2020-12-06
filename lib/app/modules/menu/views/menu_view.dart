@@ -1,7 +1,7 @@
 import 'package:delivery_store/app/data/model/product_model.dart';
+import 'package:delivery_store/app/modules/menu/controllers/menu_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:delivery_store/app/modules/products/controllers/products_controller.dart';
 
 class ProductsView extends GetView<ProductsController> {
   @override

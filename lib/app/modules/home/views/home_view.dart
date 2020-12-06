@@ -60,8 +60,8 @@ class HomeView extends GetView<HomeController> {
             ),
             ListTile(
               leading: Icon(Icons.menu),
-              title: Text('Produtos'),
-              onTap: controller.onDrawerProductsPressed,
+              title: Text('Cardápio'),
+              onTap: controller.onDrawerMenuPressed,
             ),
             Divider(),
             ListTile(

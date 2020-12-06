@@ -1,4 +1,5 @@
 import 'package:delivery_store/app/data/model/product_model.dart';
+import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/provider/product_provider.dart';
 import 'package:meta/meta.dart';
 
@@ -9,9 +10,9 @@ class ProductRepository {
 
   // Future<List<ProductModel>> getAll() => provider.getProductList();
 
-  add(ProductModel product) => provider.addProduct(product);
+  add(StoreModel store, ProductModel product) => provider.add(store, product);
 
-  getProducts(store) => provider.getProductList(store);
+  getAll(store) => provider.getAll(store);
 
   //TODO: Implement ProductRepository
 }

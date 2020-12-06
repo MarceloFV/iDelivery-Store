@@ -10,19 +10,17 @@ class ProductProvider {
 
   ProductProvider({@required this.firestore});
 
-  Future<List<ProductModel>> getProductList(StoreModel store) async {
-    if (store.menu == null) return [];
+  Future<List<ProductModel>> getAll(StoreModel store) async {
+    var query = await store.reference.collection(collectionPath).get();
     List<ProductModel> products = [];
-    store.menu.forEach((productReference) async {
-      var snap = await productReference.get();
-      products
-          .add(ProductModel.fromMap(snap.data())); //TODO: Create from Snapshot
+    query.docs.forEach((snap) {
+      products.add(ProductModel.fromMap(snap.data()));
     });
-    //TODO: ach q essa porra era pra ser future
+    print(products);
     return products;
   }
 
-  addProduct(ProductModel product) {
-    return firestore.collection(collectionPath).add(product.toMap());
+  add(StoreModel store, ProductModel product) {
+    return store.reference.collection(collectionPath).add(product.toMap());
   }
 }

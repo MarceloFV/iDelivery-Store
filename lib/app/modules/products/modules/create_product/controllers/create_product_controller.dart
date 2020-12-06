@@ -41,8 +41,8 @@ class CreateProductController extends GetxController {
   }
 
   _addProduct(ProductModel product) async {
-    var productReference = await productRepository.add(product);
-    _storeModel.value.menu.add(productReference);
-    await storeRepository.addProductReferenceToMenu(store, productReference);
+    await productRepository.add(store, product);
+    // _storeModel.value.menu.add(productReference);
+    // await storeRepository.addProductReferenceToMenu(store, productReference);
   }
 }

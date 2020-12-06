@@ -15,13 +15,14 @@ class ProductsView extends GetView<ProductsController> {
         onPressed: controller.onAddProductPressed,
         child: Text("Adicionar produto"),
       ),
-      body: ListView(
-        children: controller.productList //TODO: Testar como fica quando deixar muito tempo carregando
-            .map<ProductCard>((product) => ProductCard(
-                  product: product,
-                ))
-            .toList(),
-      ),
+      body: Obx(() => ListView(
+            children: controller
+                .productList
+                .map<ProductCard>((product) => ProductCard(
+                      product: product,
+                    ))
+                .toList(),
+          )),
     );
   }
 }
@@ -32,6 +33,7 @@ class ProductCard extends StatelessWidget {
   const ProductCard({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print(product.title);
     return Card(
       child: ListTile(
         title: Text(product.title),

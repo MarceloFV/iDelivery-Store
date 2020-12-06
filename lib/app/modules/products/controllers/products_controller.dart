@@ -22,9 +22,10 @@ class ProductsController extends GetxController {
   }
 
   _fetchProducts() async {
-    print('_products : $_products');
-    print('store : $store');
-    // _products.assignAll(await repository.getProducts(store));
+    print('_products : $_products'); //TODO: Decidir extrutura de dados
+    // print('store : $store');
+    // print('')
+    _products.assignAll(await repository.getAll(store));
   }
 
   void onAddProductPressed() {

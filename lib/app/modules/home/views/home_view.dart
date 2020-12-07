@@ -35,7 +35,7 @@ class HomeView extends GetView<HomeController> {
           children: <Widget>[
             ListTile(
               leading: FlutterLogo(),
-              title: Text('UaiDelivery'),
+              title: Text('UaiFood'),
             ),
             Divider(),
             ListTile(
@@ -46,32 +46,28 @@ class HomeView extends GetView<HomeController> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.store),
-              title: Text('Loja'),
-              onTap: () {
-                //TODO: Implement goto store page
-              },
-            ),
-            ListTile(
               leading: Icon(Icons.menu),
               title: Text('Cardápio'),
               onTap: controller.onDrawerMenuPressed,
             ),
+
+            //TODO: Implement request history system
+            // ListTile(
+            //   leading: Icon(Icons.history),
+            //   title: Text('Histórico de pedidos'),
+            //   onTap: () {
+            //   },
+            // ),
+          
+          //TODO: Implement store page
+            // ListTile(
+            //   leading: Icon(Icons.store),
+            //   title: Text('Loja'),
+            //   onTap: () {
+            //     //TODO: Implement goto store page
+            //   },
+            // ),
             Divider(),
-            ListTile(
-              leading: Icon(Icons.history),
-              title: Text('Histórico de pedidos'),
-              onTap: () {
-                //TODO: Implement goto history page
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Perfil'),
-              onTap: () {
-                //TODO: Implement goto profile page
-              },
-            ),
             ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text('Sair'),

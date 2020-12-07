@@ -37,6 +37,9 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Card(
         child: ListTile(
+          leading: (product.imgUrl != null)
+              ? Image.network(product.imgUrl)
+              : Image.asset('assets/images/not-found.jpg'),
           title: Text(product.title),
           trailing: Text(product.value.toString()),
           subtitle: Text(product.description),

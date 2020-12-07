@@ -64,12 +64,18 @@ class ImageSection extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8.0),
       child: Container(
-        child: Image.network(
-          imgUrl ??
-              'https://st2.depositphotos.com/1692343/5636/i/950/depositphotos_56360353-stock-photo-hot-homemade-pepperoni-pizza.jpg', //TODO: Criar imagem padrao para ausencia de imagem
-          height: 310.0,
-          fit: BoxFit.cover,
-        ),
+        child: (imgUrl != null)
+            ? Image.network(
+                imgUrl,
+                height: 310.0,
+                fit: BoxFit.cover,
+              )
+            : Image.asset(
+                'assets/images/not-found.jpg',
+                height: 310.0,
+                fit: BoxFit.cover,
+              ),
+        //TODO: Criar imagem padrao para ausencia de imagem
       ),
     );
   }
@@ -92,7 +98,7 @@ class TitleAndPriceSection extends StatelessWidget {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           Text(
-            value.toString(), //TODO: Mask value 
+            value.toString(), //TODO: Mask value
             style: TextStyle(
               color: Colors.green,
               fontSize: 14,

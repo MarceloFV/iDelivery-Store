@@ -8,8 +8,6 @@ import 'package:delivery_store/app/modules/menu/modules/product/views/product_vi
 import 'package:delivery_store/app/modules/menu/views/menu_view.dart';
 import 'package:delivery_store/app/modules/request/views/request_view.dart';
 import 'package:delivery_store/app/modules/request/bindings/request_binding.dart';
-import 'package:delivery_store/app/modules/create_store/views/create_store_view.dart';
-import 'package:delivery_store/app/modules/create_store/bindings/create_store_binding.dart';
 import 'package:delivery_store/app/modules/splash/views/splash_view.dart';
 import 'package:delivery_store/app/modules/splash/bindings/splash_binding.dart';
 import 'package:delivery_store/app/modules/register/views/register_view.dart';
@@ -43,11 +41,6 @@ class AppPages {
       name: Routes.SPLASH,
       page: () => SplashView(),
       binding: SplashBinding(),
-    ),
-    GetPage(
-      name: Routes.CREATE_STORE,
-      page: () => CreateStoreView(),
-      binding: CreateStoreBinding(),
     ),
     GetPage(
       name: Routes.REQUEST,

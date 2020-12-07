@@ -1,23 +1,34 @@
+import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/model/user_model.dart';
-import 'package:delivery_store/app/data/repository/user_repository.dart';
+import 'package:delivery_store/app/data/repository/store_repository.dart';
+import 'package:delivery_store/app/data/repository/auth_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
-  final UserRepository repository;
+  final AuthRepository authRepository;
+  final StoreRepository storeRepository;
 
-  RegisterController({@required this.repository}) : assert(repository != null);
+  RegisterController(
+      {@required this.authRepository, @required this.storeRepository})
+      : assert(authRepository != null);
 
   TextEditingController nameController = TextEditingController();
   TextEditingController cpfController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  TextEditingController titleController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController shipController = TextEditingController();
+
   TextEditingController ruaController = TextEditingController();
   TextEditingController numeroController = TextEditingController();
   TextEditingController bairroController = TextEditingController();
   TextEditingController cepController = TextEditingController();
+
+//TODO: conferir se existem erros quando criar loja
 
   register() async {
     Address address = Address(
@@ -27,20 +38,22 @@ class RegisterController extends GetxController {
       cep: cepController.text,
     );
 
-    UserModel user = UserModel(
-      name: nameController.text,
-      cpf: cpfController.text,
-      email: emailController.text,
-      adress: address,
+    //TODO: Adicionar mais informaçoes dentro do store;
+    StoreModel storeModel = StoreModel(
+      title: titleController.text,
+      phoneNumber: phoneController.text,
+      shipPrice: double.parse(shipController.text),
     );
 
     String email = emailController.text;
     String password = passwordController.text;
 
-    var userResponse = await repository.createUser(email, password, user);
+    String uid = await authRepository.register(email, password);
 
-    if (userResponse != null)
-      Get.offAllNamed(Routes.CREATE_STORE, arguments: {'user': userResponse});
+    var store = await storeRepository.createStore(uid, storeModel);
+
+    if (store != null)
+      Get.offAllNamed(Routes.HOME, arguments: {'store': store});
     else
       print('algo deu errado'); //TODO: Definir erro
   }

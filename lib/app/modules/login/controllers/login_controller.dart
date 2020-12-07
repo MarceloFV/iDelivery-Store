@@ -1,16 +1,20 @@
+import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/model/user_model.dart';
-import 'package:delivery_store/app/data/repository/user_repository.dart';
+import 'package:delivery_store/app/data/repository/store_repository.dart';
+import 'package:delivery_store/app/data/repository/auth_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
 class LoginController extends GetxController {
-  final UserRepository repository;
+  final AuthRepository authRepository;
+  final StoreRepository storeRepository;
 
-  LoginController({@required this.repository}) : assert(repository != null);
-
-  UserModel userModel;
+  LoginController({
+    @required this.authRepository,
+    @required this.storeRepository,
+  }) : assert(authRepository != null);
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -41,14 +45,10 @@ class LoginController extends GetxController {
   login() async {
     String email = emailController.text;
     String password = passwordController.text;
-    UserModel userResponse = await repository.login(email, password);
-    if (userResponse != null) {
-      if (userResponse.store == null) {
-        return Get.offAndToNamed(Routes.HOME,
-            arguments: {'user': userResponse});
-      }
-      return Get.offAllNamed(Routes.CREATE_STORE,
-          arguments: {'user': userResponse});
+    String uid = await authRepository.login(email, password);
+    StoreModel store = await storeRepository.getStore(uid);
+    if (store != null) {
+      Get.offAndToNamed(Routes.HOME, arguments: {'store': store});
     }
   }
 }

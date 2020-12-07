@@ -2,25 +2,22 @@ import 'package:get/get.dart';
 
 import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/model/user_model.dart';
-import 'package:delivery_store/app/data/repository/user_repository.dart';
+import 'package:delivery_store/app/data/repository/auth_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:meta/meta.dart';
 
 class HomeController extends GetxController {
-  final UserRepository userRepository;
+  final AuthRepository authRepository;
 
-  HomeController({@required this.userRepository});
+  HomeController({@required this.authRepository});
 
-  UserModel user;
   StoreModel store;
 
   final isOpen = false.obs;
 
   @override
   void onInit() {
-    user = Get.arguments['user'];
     store = Get.arguments['store'];
-    print(user);
     super.onInit();
   }
 
@@ -34,22 +31,21 @@ class HomeController extends GetxController {
 
   _openStore() {
     print('Abrindo loja');
-    //TODO: Implement openStore method
     Get.toNamed(Routes.REQUEST, arguments: {'store': store});
+    //TODO: Implement openStore method
   }
 
   _closeStore() {
-    //TODO: Implement closeStore method
     print('Fechando loja');
+    //TODO: Implement closeStore method
   }
 
   onDrawerMenuPressed() {
-    print('store from home: $store');
     Get.toNamed(Routes.MENU, arguments: {'store': store});
   }
 
   onLogoutPressed() {
-    userRepository.logout();
+    authRepository.logout();
     Get.offAllNamed(Routes.LOGIN);
   }
 }

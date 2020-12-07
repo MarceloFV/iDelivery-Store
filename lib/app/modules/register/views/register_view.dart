@@ -16,7 +16,10 @@ class RegisterView extends GetView<RegisterController> {
         minimum: EdgeInsets.all(32),
         child: ListView(
           children: [
-            Text('Dados: ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
+            Text(
+              'Dados: ',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+            ),
             TextFormField(
               controller: controller.nameController,
               decoration: InputDecoration(hintText: "Nome"),
@@ -30,7 +33,6 @@ class RegisterView extends GetView<RegisterController> {
               controller: controller.emailController,
               decoration: InputDecoration(hintText: "Email"),
               keyboardType: TextInputType.emailAddress,
-
             ),
             TextFormField(
               controller: controller.passwordController,
@@ -38,7 +40,29 @@ class RegisterView extends GetView<RegisterController> {
               obscureText: true,
             ),
             Divider(),
-            Text('Endereço: ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
+            Text(
+              'Dados da loja: ',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+            ),
+            TextFormField(
+              controller: controller.titleController,
+              decoration: InputDecoration(hintText: "Titulo"),
+            ),
+            TextFormField(
+              controller: controller.phoneController,
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(hintText: "Telefone"),
+            ),
+            TextFormField(
+              controller: controller.shipController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(hintText: "Valor frete"),
+            ),
+            Divider(),
+            Text(
+              'Endereço: ',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+            ),
             TextFormField(
               controller: controller.ruaController,
               decoration: InputDecoration(hintText: "Rua"),
@@ -47,7 +71,6 @@ class RegisterView extends GetView<RegisterController> {
               controller: controller.numeroController,
               decoration: InputDecoration(hintText: "Numero"),
               keyboardType: TextInputType.number,
-
             ),
             TextFormField(
               controller: controller.bairroController,
@@ -57,9 +80,10 @@ class RegisterView extends GetView<RegisterController> {
               controller: controller.cepController,
               decoration: InputDecoration(hintText: "CEP"),
               keyboardType: TextInputType.number,
-
             ),
-            SizedBox(height: 8,),
+            SizedBox(
+              height: 8,
+            ),
             RaisedButton(
               onPressed: controller.register,
               child: Text("Confirmar"),

@@ -13,6 +13,8 @@ class StoreRepository {
   addProductReferenceToMenu(store, reference) =>
       provider.addProductReferenceToMenu(store, reference);
 
-  getStore(UserModel user) => provider.getStore(user);
+  Future<StoreModel> getStore(String uid) => provider.getStore(uid);
+
+  getStoreFromID() {}
 //TODO: Implement StoreRepository
 }

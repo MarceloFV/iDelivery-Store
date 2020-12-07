@@ -1,54 +1,36 @@
 import 'package:delivery_store/app/data/model/store_model.dart';
-import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:delivery_store/app/data/repository/store_repository.dart';
-import 'package:delivery_store/app/data/repository/user_repository.dart';
+import 'package:delivery_store/app/data/repository/auth_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
 class SplashController extends GetxController {
-  final UserRepository userRepository;
+  final AuthRepository authRepository;
   final StoreRepository storeRepository;
   SplashController(
-      {@required this.userRepository, @required this.storeRepository});
+      {@required this.authRepository, @required this.storeRepository});
 
-  Worker worker;
-
-  final user = UserModel().obs;
-  StoreModel store;
+  final store = StoreModel().obs;
 
   @override
   void onInit() {
-    worker = ever(user, onUserChanged);
-    fetchUser();
+    ever(store, onStoreChanged);
+    fetchStore();
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    worker.dispose();
-  }
-
-  fetchUser() async {
-    user.value = await userRepository.getCurrentUser();
-  }
-
   fetchStore() async {
-    store = await storeRepository.getStore(user.value);
+    String uid = authRepository.getCurrentUID();
+    if (uid == null) return store.value = null;
+    store.value = await storeRepository.getStore(uid);
   }
 
-  onUserChanged(UserModel u) async {
-    await fetchStore();
-    if (u != null) {
-      if (u.store != null) {
-        Get.offAllNamed(Routes.HOME, arguments: {'user': u, 'store': store});
-      } else {
-        Get.offAllNamed(Routes.CREATE_STORE, arguments: {
-          'user': u
-        });
-      }
-    } else {
-      Get.offAllNamed(Routes.LOGIN);
-    }
+  onStoreChanged(StoreModel s) async {
+    await Future.delayed(Duration(seconds: 0));
+    if (s != null)
+      return Get.offAllNamed(Routes.HOME, arguments: {'store': s});
+    else
+      return Get.offAllNamed(Routes.LOGIN);
   }
 }

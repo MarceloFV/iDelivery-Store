@@ -80,9 +80,9 @@ class StoreProvider {
     }
   }
 
-  getStore(UserModel user) async {
+  Future<StoreModel> getStore(String uid) async {
     try {
-      var snap = await user.store.get();
+      var snap = await firestore.collection(collectionPath).doc(uid).get();
       return StoreModel.fromDocumentSnapshot(snap);
     } catch (e) {
       return null;

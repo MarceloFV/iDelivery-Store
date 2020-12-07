@@ -16,7 +16,7 @@ class MenuController extends GetxController {
 
   @override
   void onInit() {
-    store = Get.arguments['store'];
+    store = Get.arguments['store']; //TODO: Create persistent product list data
     _fetchProducts();
     super.onInit();
   }
@@ -26,8 +26,7 @@ class MenuController extends GetxController {
   }
 
   onProductCardPressed(ProductModel product) {
-    Get.toNamed(Routes.MENU + Routes.PRODUCT,
-        arguments: {'product': product});
+    Get.toNamed(Routes.MENU + Routes.PRODUCT, arguments: {'product': product});
   }
 
   Future<void> onAddProductPressed() async {

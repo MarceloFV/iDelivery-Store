@@ -1,5 +1,4 @@
 import 'package:delivery_store/app/data/model/store_model.dart';
-import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:delivery_store/app/data/repository/auth_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';
@@ -31,12 +30,12 @@ class RegisterController extends GetxController {
 //TODO: conferir se existem erros quando criar loja
 
   register() async {
-    Address address = Address(
-      rua: ruaController.text,
-      numero: numeroController.text,
-      bairro: bairroController.text,
-      cep: cepController.text,
-    );
+    // Address address = Address(
+    //   rua: ruaController.text,
+    //   numero: numeroController.text,
+    //   bairro: bairroController.text,
+    //   cep: cepController.text,
+    // );
 
     //TODO: Adicionar mais informaçoes dentro do store;
     StoreModel storeModel = StoreModel(

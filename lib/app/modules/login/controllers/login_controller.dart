@@ -1,5 +1,4 @@
 import 'package:delivery_store/app/data/model/store_model.dart';
-import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:delivery_store/app/data/repository/auth_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';

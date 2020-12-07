@@ -33,12 +33,6 @@ class HomeView extends GetView<HomeController> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            // DrawerHeader(
-            //   child: Text('Drawer Header'),
-            //   decoration: BoxDecoration(
-            //     color: Colors.blue,
-            //   ),
-            // ),
             ListTile(
               leading: FlutterLogo(),
               title: Text('UaiDelivery'),
@@ -77,8 +71,12 @@ class HomeView extends GetView<HomeController> {
               onTap: () {
                 //TODO: Implement goto profile page
               },
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Sair'),
+              onTap: controller.onLogoutPressed,
             )
-            
           ],
         ),
       ),

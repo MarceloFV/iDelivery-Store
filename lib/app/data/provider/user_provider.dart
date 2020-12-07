@@ -59,6 +59,10 @@ class UserProvider {
     }
   }
 
+  logout() {
+    auth.signOut();
+  }
+
   Future<UserModel> getCurrentUser() async {
     try {
       var uid = getCurrentUserId();
@@ -88,7 +92,7 @@ class UserProvider {
   attachStoreToUser(UserModel user) {
     //TODO: adicionar store ao user reference
     try {
-       firestore
+      firestore
           .collection(collectionPath)
           .doc(getCurrentUserId())
           .update({'store': user.store});

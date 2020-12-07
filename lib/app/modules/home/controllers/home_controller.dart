@@ -1,11 +1,19 @@
-import 'package:delivery_store/app/data/model/store_model.dart';
-import 'package:delivery_store/app/data/model/user_model.dart';
-import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
+import 'package:delivery_store/app/data/model/store_model.dart';
+import 'package:delivery_store/app/data/model/user_model.dart';
+import 'package:delivery_store/app/data/repository/user_repository.dart';
+import 'package:delivery_store/app/routes/app_pages.dart';
+import 'package:meta/meta.dart';
+
 class HomeController extends GetxController {
+  final UserRepository userRepository;
+
+  HomeController({@required this.userRepository});
+
   UserModel user;
   StoreModel store;
+
   final isOpen = false.obs;
 
   @override
@@ -38,5 +46,9 @@ class HomeController extends GetxController {
   onDrawerMenuPressed() {
     print('store from home: $store');
     Get.toNamed(Routes.MENU, arguments: {'store': store});
+  }
+
+  onLogoutPressed() {
+    userRepository.logout();
   }
 }

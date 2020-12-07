@@ -11,12 +11,13 @@ class UserRepository {
 
   login(email, password) => provider.login(email, password);
 
+  logout() => provider.logout();
+
   getCurrentUser() => provider.getCurrentUser();
 
   getCurrentUserId() => provider.getCurrentUserId();
 
   updateUser(UserModel user) => provider.updateUser(user);
 
-  attachStoreToUser(UserModel user) =>
-      provider.attachStoreToUser(user);
+  attachStoreToUser(UserModel user) => provider.attachStoreToUser(user);
 }

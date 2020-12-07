@@ -13,39 +13,37 @@ class CreateProductController extends GetxController {
 
   StoreModel store;
 
-  TextEditingController _nameController;
-  TextEditingController _descriptionController;
-  TextEditingController _valueController;
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
+  TextEditingController _valueController = TextEditingController();
   TextEditingController get nameController => _nameController;
   TextEditingController get descriptionController => _descriptionController;
   TextEditingController get valueController => _valueController;
 
   @override
   void onInit() {
-    store =
-        Get.arguments['store']; 
-    _nameController = TextEditingController();
-    _valueController = TextEditingController();
+    store = Get.arguments['store'];
     super.onInit();
   }
 
   void onAddProductPressed() async {
+
     ProductModel product = ProductModel(
       title: nameController.text,
       value: double.parse(
         valueController.text,
       ),
-      description: descriptionController.text, 
+      description: descriptionController.text,
       isAvailable: true,
       likes: 0,
     );
+
     await _addProduct(product);
     Get.back(result: product);
   }
 
   _addProduct(ProductModel product) async {
     await productRepository.add(store, product);
-
   }
 }
 

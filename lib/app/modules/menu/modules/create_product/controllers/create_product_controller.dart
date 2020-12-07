@@ -11,8 +11,7 @@ class CreateProductController extends GetxController {
   CreateProductController(
       {@required this.productRepository, @required this.storeRepository});
 
-  final _storeModel = StoreModel().obs;
-  StoreModel get store => _storeModel.value;
+  StoreModel store;
 
   TextEditingController _nameController;
   TextEditingController _descriptionController;
@@ -21,12 +20,10 @@ class CreateProductController extends GetxController {
   TextEditingController get descriptionController => _descriptionController;
   TextEditingController get valueController => _valueController;
 
-  //TODO: Receber o argumento da pagina com o valor da referencia de store...
-
   @override
   void onInit() {
-    _storeModel.value =
-        Get.arguments['store']; //TODO: Ajustar envio de parametros
+    store =
+        Get.arguments['store']; 
     _nameController = TextEditingController();
     _valueController = TextEditingController();
     super.onInit();

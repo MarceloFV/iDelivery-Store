@@ -18,20 +18,12 @@ import 'package:delivery_store/app/modules/login/views/login_view.dart';
 import 'package:delivery_store/app/modules/login/bindings/login_binding.dart';
 import 'package:delivery_store/app/modules/home/views/home_view.dart';
 import 'package:delivery_store/app/modules/home/bindings/home_binding.dart';
-import 'package:delivery_store/app/modules/layout/views/layout_view.dart';
-import 'package:delivery_store/app/modules/layout/bindings/layout_binding.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
 class AppPages {
   static const INITIAL = Routes.SPLASH;
-
   static final routes = [
-    GetPage(
-      name: Routes.LAYOUT,
-      page: () => LayoutView(),
-      binding: LayoutBinding(),
-    ),
     GetPage(
       name: Routes.HOME,
       page: () => HomeView(),
@@ -80,12 +72,13 @@ class AppPages {
           binding: CreateProductBinding(),
           transition: Transition.rightToLeft,
         ),
+        GetPage(
+          name: Routes.EDIT_PRODUCT,
+          page: () => EditProductView(),
+          binding: EditProductBinding(),
+          transition: Transition.rightToLeft,
+        ),
       ],
-    ),
-    GetPage(
-      name: Routes.EDIT_PRODUCT, 
-      page:()=> EditProductView(), 
-      binding: EditProductBinding(),
     ),
   ];
 }

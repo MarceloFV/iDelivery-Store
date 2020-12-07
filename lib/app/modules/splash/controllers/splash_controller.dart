@@ -45,7 +45,7 @@ class SplashController extends GetxController {
       } else {
         Get.offAllNamed(Routes.CREATE_STORE, arguments: {
           'user': u
-        }); //TODO: Vai dar erro quando eu ir para a store;
+        });
       }
     } else {
       Get.offAllNamed(Routes.LOGIN);

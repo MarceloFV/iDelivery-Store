@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 enum CategoryType {
   Hamburguer,
   Pizza,
@@ -17,7 +19,7 @@ class ProductModel {
   final bool isAvailable;
   final int likes;
   // final CategoryType category;
-  // final DocumentReference reference; //TODO: Implement reference
+  final DocumentReference reference;
 
   ProductModel({
     this.imgUrl,
@@ -26,20 +28,21 @@ class ProductModel {
     this.value,
     this.isAvailable,
     this.likes,
-    // this.reference,
+    this.reference,
   });
 
-  Map<String, dynamic> toMap() =>
-     {
-      'imgUrl': imgUrl,
-      'title': title,
-      'description': description,
-      'value': value,
-      'isAvailable': isAvailable,
-      'likes': likes,
-      // 'reference': reference?.toMap(),
-    };
-  
+  Map<String, dynamic> toMap() => {
+        'imgUrl': imgUrl,
+        'title': title,
+        'description': description,
+        'value': value,
+        'isAvailable': isAvailable,
+        'likes': likes,
+      };
+
+  factory ProductModel.fromDocumentSnapshot(DocumentSnapshot snapshot) =>
+      ProductModel.fromMap(snapshot.data())
+          .copyWith(reference: snapshot.reference);
 
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
@@ -51,8 +54,6 @@ class ProductModel {
       value: map['value'],
       isAvailable: map['isAvailable'],
       likes: map['likes'],
-      // CategoryType.fromMap(map['category']),
-      // DocumentReference.fromMap(map['reference']),
     );
   }
 
@@ -60,4 +61,24 @@ class ProductModel {
 
   factory ProductModel.fromJson(String source) =>
       ProductModel.fromMap(json.decode(source));
+
+  ProductModel copyWith({
+    String imgUrl,
+    String title,
+    String description,
+    double value,
+    bool isAvailable,
+    int likes,
+    DocumentReference reference,
+  }) {
+    return ProductModel(
+      imgUrl: imgUrl ?? this.imgUrl,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      value: value ?? this.value,
+      isAvailable: isAvailable ?? this.isAvailable,
+      likes: likes ?? this.likes,
+      reference: reference ?? this.reference,
+    );
+  }
 }

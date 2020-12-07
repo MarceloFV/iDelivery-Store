@@ -17,7 +17,6 @@ class MenuController extends GetxController {
   @override
   void onInit() {
     store = Get.arguments['store'];
-    print('recriado'); //TODO: Testar se o fenix:true recria o widget
     _fetchProducts();
     super.onInit();
   }

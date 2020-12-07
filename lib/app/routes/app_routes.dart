@@ -1,8 +1,6 @@
 part of 'app_pages.dart';
 
 abstract class Routes {
-  static const CREATE_PRODUCT = '/create-product';
-  static const LAYOUT = '/layout';
   static const HOME = '/home';
   static const LOGIN = '/login';
   static const REGISTER = '/register';
@@ -11,7 +9,6 @@ abstract class Routes {
   static const REQUEST = '/request';
   static const MENU = '/menu';
   static const PRODUCT = '/product';
-  static const PRODCUTS_MODULES_EDIT_PRODUCT = '/prodcuts-modules-edit-product';
-  static const PRODUCTS_MODULES_EDIT_PRODUCT = '/products-modules-edit-product';
-  static const EDIT_PRODUCT = '/menu-modules-edit-product';
+  static const EDIT_PRODUCT = '/edit-product';
+  static const CREATE_PRODUCT = '/create-product';
 }

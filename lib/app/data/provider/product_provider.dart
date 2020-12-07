@@ -14,9 +14,8 @@ class ProductProvider {
     var query = await store.reference.collection(collectionPath).get();
     List<ProductModel> products = [];
     query.docs.forEach((snap) {
-      products.add(ProductModel.fromMap(snap.data()));
+      products.add(ProductModel.fromDocumentSnapshot(snap));
     });
-    print(products);
     return products;
   }
 

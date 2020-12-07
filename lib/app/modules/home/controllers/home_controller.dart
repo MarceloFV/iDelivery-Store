@@ -50,5 +50,6 @@ class HomeController extends GetxController {
 
   onLogoutPressed() {
     userRepository.logout();
+    Get.offAllNamed(Routes.LOGIN);
   }
 }

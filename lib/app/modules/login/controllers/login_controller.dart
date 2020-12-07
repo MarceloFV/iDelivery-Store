@@ -43,7 +43,7 @@ class LoginController extends GetxController {
     String password = passwordController.text;
     UserModel userResponse = await repository.login(email, password);
     if (userResponse != null) {
-      if (userResponse.store != null) {
+      if (userResponse.store == null) {
         return Get.offAndToNamed(Routes.HOME,
             arguments: {'user': userResponse});
       }

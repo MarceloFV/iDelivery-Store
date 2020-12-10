@@ -15,5 +15,4 @@ class StoreRepository {
   Future<StoreModel> getStore(String uid) => provider.getStore(uid);
 
   getStoreFromID() {}
-//TODO: Implement StoreRepository
 }

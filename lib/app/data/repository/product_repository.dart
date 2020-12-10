@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:delivery_store/app/data/model/product_model.dart';
 import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/provider/product_provider.dart';
@@ -10,9 +12,10 @@ class ProductRepository {
 
   // Future<List<ProductModel>> getAll() => provider.getProductList();
 
-  add(StoreModel store, ProductModel product) => provider.add(store, product);
+  add(StoreModel store, ProductModel product, File img) => provider.add(store, product, img);
 
   getAll(store) => provider.getAll(store);
 
-  //TODO: Implement ProductRepository
+  // uploadFile(File file, product, store) => provider.uploadFile(file, product, store);
+
 }

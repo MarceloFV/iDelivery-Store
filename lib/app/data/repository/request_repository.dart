@@ -9,5 +9,4 @@ RequestRepository({@required this.provider}) : assert(provider != null);
 
 getStream(String uid) => provider.requestListStream(uid);
 
-//TODO: Implement request_rep
 }

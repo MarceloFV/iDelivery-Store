@@ -27,17 +27,9 @@ class RegisterController extends GetxController {
   TextEditingController bairroController = TextEditingController();
   TextEditingController cepController = TextEditingController();
 
-//TODO: conferir se existem erros quando criar loja
+//TODO: Adicionar imagem a loja
 
   register() async {
-    // Address address = Address(
-    //   rua: ruaController.text,
-    //   numero: numeroController.text,
-    //   bairro: bairroController.text,
-    //   cep: cepController.text,
-    // );
-
-    //TODO: Adicionar mais informaçoes dentro do store;
     StoreModel storeModel = StoreModel(
       title: titleController.text,
       phoneNumber: phoneController.text,

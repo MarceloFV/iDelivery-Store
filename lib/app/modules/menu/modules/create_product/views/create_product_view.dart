@@ -16,8 +16,23 @@ class CreateProductView extends GetView<CreateProductController> {
       ),
       body: SafeArea(
         minimum: EdgeInsets.all(16),
-              child: ListView(
+        child: ListView(
           children: [
+            Obx(
+              () => controller.haveImage.value
+                  ? Image.file(
+                      controller.image,
+                      height: 310,
+                      fit: BoxFit.cover,
+                    )
+                  : Container(),
+            ),
+            ListTile(
+              title: Text('Adicionar imagem'),
+              trailing: Icon(Icons.photo_library),
+              onTap: controller.getImage,
+            ),
+
             TextFormField(
               controller: controller.nameController,
               decoration: InputDecoration(hintText: 'Nome'),
@@ -26,7 +41,7 @@ class CreateProductView extends GetView<CreateProductController> {
               controller: controller.descriptionController,
               decoration: InputDecoration(hintText: 'Descrição'),
             ),
-            // TODO: Adicionar mascara de texto
+            // TODO: Add mask
             TextFormField(
               controller: controller.valueController,
               decoration: InputDecoration(hintText: 'Valor'),

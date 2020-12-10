@@ -75,7 +75,6 @@ class ImageSection extends StatelessWidget {
                 height: 310.0,
                 fit: BoxFit.cover,
               ),
-        //TODO: Criar imagem padrao para ausencia de imagem
       ),
     );
   }

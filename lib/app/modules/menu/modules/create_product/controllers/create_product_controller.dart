@@ -1,15 +1,16 @@
+import 'dart:io';
+
 import 'package:delivery_store/app/data/model/product_model.dart';
 import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/repository/product_repository.dart';
-import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateProductController extends GetxController {
   final ProductRepository productRepository;
-  final StoreRepository storeRepository;
-  CreateProductController(
-      {@required this.productRepository, @required this.storeRepository});
+  // final StoreRepository storeRepository;
+  CreateProductController({@required this.productRepository});
 
   StoreModel store;
 
@@ -20,6 +21,28 @@ class CreateProductController extends GetxController {
   TextEditingController get descriptionController => _descriptionController;
   TextEditingController get valueController => _valueController;
 
+  File image;
+  final picker = ImagePicker();
+
+  final haveImage = false.obs;
+
+  Future getImage() async {
+    //TODO: Resolver bug de troca de imagem(nao troca)
+    final pickedFile = await picker.getImage(
+      source: ImageSource.gallery,
+      maxHeight: 1080,
+      maxWidth: 1080,
+      imageQuality: 50,
+    );
+
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+      haveImage.value = true;
+    } else {
+      //TODO: Implement no image selected
+    }
+  }
+
   @override
   void onInit() {
     store = Get.arguments['store'];
@@ -27,6 +50,7 @@ class CreateProductController extends GetxController {
   }
 
   void onAddProductPressed() async {
+    
 
     ProductModel product = ProductModel(
       title: nameController.text,
@@ -43,7 +67,7 @@ class CreateProductController extends GetxController {
   }
 
   _addProduct(ProductModel product) async {
-    await productRepository.add(store, product);
+    await productRepository.add(store, product, image);
   }
 }
 

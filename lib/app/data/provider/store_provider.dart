@@ -31,6 +31,23 @@ class StoreProvider {
     }
   }
 
+/*
+Future<ProductModel> add(
+      StoreModel store, ProductModel product, File img) async {
+    product = await store.reference
+        .collection(collectionPath)
+        .add(product.toMap())
+        .then((ref) => product.copyWith(reference: ref));
+    String imgPath =
+        'stores/${store.reference.id}/products/${product.reference.id}/1.jpg';
+    var imgRef = storage.ref(imgPath);
+    await imgRef.putFile(img);
+    var url = await imgRef.getDownloadURL();
+    await product.reference.update({'imgUrl': url});
+    product = product.copyWith(imgUrl: url);
+    return product;
+  }
+*/
   Future<StoreModel> updateStore(StoreModel storeModel) async {
     try {
       await storeModel.reference.update(storeModel.toMap());

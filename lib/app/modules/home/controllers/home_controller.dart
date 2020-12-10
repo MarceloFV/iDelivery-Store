@@ -29,14 +29,9 @@ class HomeController extends GetxController {
   }
 
   _openStore() {
-    print('Abrindo loja');
-    Get.toNamed(Routes.REQUEST, arguments: {'store': store});
-    //TODO: Implement openStore method
   }
 
   _closeStore() {
-    print('Fechando loja');
-    //TODO: Implement closeStore method
   }
 
   onDrawerMenuPressed() {

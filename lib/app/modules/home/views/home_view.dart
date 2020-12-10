@@ -51,7 +51,7 @@ class HomeView extends GetView<HomeController> {
               onTap: controller.onDrawerMenuPressed,
             ),
 
-            //TODO: Implement request history system
+
             // ListTile(
             //   leading: Icon(Icons.history),
             //   title: Text('Histórico de pedidos'),
@@ -59,12 +59,10 @@ class HomeView extends GetView<HomeController> {
             //   },
             // ),
           
-          //TODO: Implement store page
             // ListTile(
             //   leading: Icon(Icons.store),
             //   title: Text('Loja'),
             //   onTap: () {
-            //     //TODO: Implement goto store page
             //   },
             // ),
             Divider(),

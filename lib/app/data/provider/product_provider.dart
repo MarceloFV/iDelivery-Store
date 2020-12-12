@@ -17,16 +17,14 @@ class ProductProvider {
     @required this.storage,
   });
 
-  Future<List<ProductModel>> getAll(StoreModel store) async {
+  Future<List<ProductModel>> readAll(StoreModel store) async {
     var query = await store.reference.collection(collectionPath).get();
-    List<ProductModel> products = [];
-    query.docs.forEach((snap) {
-      products.add(ProductModel.fromDocumentSnapshot(snap));
-    });
-    return products;
+    return query.docs
+        .map((snap) => ProductModel.fromDocumentSnapshot(snap))
+        .toList();
   }
 
-  Future<ProductModel> add(
+  Future<ProductModel> create(
       StoreModel store, ProductModel product, File img) async {
     product = await store.reference
         .collection(collectionPath)

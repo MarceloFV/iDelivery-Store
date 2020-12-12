@@ -45,7 +45,7 @@ class LoginController extends GetxController {
     String email = emailController.text;
     String password = passwordController.text;
     String uid = await authRepository.login(email, password);
-    StoreModel store = await storeRepository.getStore(uid);
+    StoreModel store = await storeRepository.read(uid);
     if (store != null) {
       Get.offAndToNamed(Routes.HOME, arguments: {'store': store});
     }

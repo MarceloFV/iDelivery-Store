@@ -44,6 +44,11 @@ class RegisterView extends GetView<RegisterController> {
               'Dados da loja: ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
             ),
+            ListTile(
+              title: Text('Adicionar imagem da loja (1:1)'),
+              leading: Icon(Icons.photo_library),
+              onTap: controller.getImage,
+            ),
             TextFormField(
               controller: controller.titleController,
               decoration: InputDecoration(hintText: "Titulo"),

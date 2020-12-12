@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_store/app/data/model/store_model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:meta/meta.dart';
 
 const collectionPath = 'stores';
@@ -14,16 +17,30 @@ enum StoreStatus {
 
 class StoreProvider {
   final FirebaseFirestore firestore;
-  StoreProvider({@required this.firestore});
+  final FirebaseStorage storage;
+
+  StoreProvider({
+    @required this.firestore,
+    @required this.storage,
+  });
 
   StoreStatus status;
 
-  createStore(String uid, StoreModel store) async {
+  Future<StoreModel> create(String uid, StoreModel store, File image) async {
     try {
       var ref = firestore.collection(collectionPath).doc(uid);
       await ref.set(store.toMap());
+
+      String imgPath = 'stores/${ref.id}/img.jpg';
+      var imgRef = storage.ref(imgPath);
+
+      await imgRef.putFile(image);
+      var url = await imgRef.getDownloadURL();
+
+      store = store.copyWith(imgUrl: url, reference: ref);
+      await store.reference.update({'imgUrl': store.imgUrl});
+      
       status = StoreStatus.Created;
-      store = store.copyWith(reference: ref);
       return store;
     } catch (e) {
       status = StoreStatus.Error;
@@ -48,7 +65,7 @@ Future<ProductModel> add(
     return product;
   }
 */
-  Future<StoreModel> updateStore(StoreModel storeModel) async {
+  Future<StoreModel> update(StoreModel storeModel) async {
     try {
       await storeModel.reference.update(storeModel.toMap());
       status = StoreStatus.Updated;
@@ -59,7 +76,7 @@ Future<ProductModel> add(
     }
   }
 
-  Future<StoreModel> readStore(String uid) async {
+  Future<StoreModel> read(String uid) async {
     try {
       var snap = await firestore.collection(collectionPath).doc(uid).get();
       status = StoreStatus.Active;
@@ -70,7 +87,7 @@ Future<ProductModel> add(
     }
   }
 
-  Future<StoreStatus> deleteStore(
+  Future<StoreStatus> delete(
     StoreModel storeModel,
   ) async {
     try {
@@ -80,28 +97,6 @@ Future<ProductModel> add(
     } catch (e) {
       status = StoreStatus.Error;
       return StoreStatus.Error;
-    }
-  }
-
-  addProductReferenceToMenu(
-    StoreModel store,
-    DocumentReference productReference,
-  ) async {
-    try {
-      store.reference.update({
-        'menu': FieldValue.arrayUnion([productReference])
-      });
-    } catch (e) {
-      return null;
-    }
-  }
-
-  Future<StoreModel> getStore(String uid) async {
-    try {
-      var snap = await firestore.collection(collectionPath).doc(uid).get();
-      return StoreModel.fromDocumentSnapshot(snap);
-    } catch (e) {
-      return null;
     }
   }
 }

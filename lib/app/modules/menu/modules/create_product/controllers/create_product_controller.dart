@@ -21,10 +21,10 @@ class CreateProductController extends GetxController {
   TextEditingController get descriptionController => _descriptionController;
   TextEditingController get valueController => _valueController;
 
+  final haveImage = false.obs;
+  
   File image;
   final picker = ImagePicker();
-
-  final haveImage = false.obs;
 
   Future getImage() async {
     //TODO: Resolver bug de troca de imagem(nao troca)

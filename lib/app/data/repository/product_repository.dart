@@ -12,9 +12,9 @@ class ProductRepository {
 
   // Future<List<ProductModel>> getAll() => provider.getProductList();
 
-  add(StoreModel store, ProductModel product, File img) => provider.add(store, product, img);
+  add(StoreModel store, ProductModel product, File img) => provider.create(store, product, img);
 
-  getAll(store) => provider.getAll(store);
+  getAll(store) => provider.readAll(store);
 
   // uploadFile(File file, product, store) => provider.uploadFile(file, product, store);
 

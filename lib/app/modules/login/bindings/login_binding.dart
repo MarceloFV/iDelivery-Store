@@ -5,6 +5,7 @@ import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:delivery_store/app/data/repository/auth_repository.dart';
 import 'package:delivery_store/app/modules/login/controllers/login_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
 class LoginBinding extends Bindings {
@@ -20,6 +21,7 @@ class LoginBinding extends Bindings {
         storeRepository: StoreRepository(
           provider: StoreProvider(
             firestore: FirebaseFirestore.instance,
+            storage: FirebaseStorage.instance
           ),
         ),
       ),

@@ -23,7 +23,7 @@ class SplashController extends GetxController {
   fetchStore() async {
     String uid = authRepository.getCurrentUID();
     if (uid == null) return store.value = null;
-    store.value = await storeRepository.getStore(uid);
+    store.value = await storeRepository.read(uid);
   }
 
   onStoreChanged(StoreModel s) async {

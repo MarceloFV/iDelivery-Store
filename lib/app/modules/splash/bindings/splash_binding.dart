@@ -4,6 +4,7 @@ import 'package:delivery_store/app/data/provider/auth_provider.dart';
 import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:delivery_store/app/data/repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:delivery_store/app/modules/splash/controllers/splash_controller.dart';
 
@@ -20,6 +21,7 @@ class SplashBinding extends Bindings {
         storeRepository: StoreRepository(
           provider: StoreProvider(
             firestore: FirebaseFirestore.instance,
+            storage: FirebaseStorage.instance,
           ),
         ),
       ),

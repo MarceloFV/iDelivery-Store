@@ -38,7 +38,7 @@ class ProductView extends GetView<ProductController> {
               ),
               TitleAndPriceSection(
                 title: controller.product.title,
-                value: controller.product.value,
+                value: controller.productValue,
               ),
               SizedBox(
                 height: 16,
@@ -82,7 +82,7 @@ class ImageSection extends StatelessWidget {
 
 class TitleAndPriceSection extends StatelessWidget {
   final String title;
-  final double value;
+  final String value;
 
   const TitleAndPriceSection({Key key, this.title, this.value})
       : super(key: key);
@@ -97,7 +97,7 @@ class TitleAndPriceSection extends StatelessWidget {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           Text(
-            value.toString(), //TODO: Mask value
+            value,
             style: TextStyle(
               color: Colors.green,
               fontSize: 14,

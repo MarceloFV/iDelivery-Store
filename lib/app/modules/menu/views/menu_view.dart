@@ -21,6 +21,7 @@ class MenuView extends GetView<MenuController> {
                   (product) => ProductCard(
                     product: product,
                     onTap: controller.onProductCardPressed,
+                    maskedValue: controller.maskValue,
                   ),
                 )
                 .toList(),
@@ -31,17 +32,34 @@ class MenuView extends GetView<MenuController> {
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
+  final Function maskedValue;
   final Function onTap;
 
-  const ProductCard({Key key, this.product, this.onTap}) : super(key: key);
+  const ProductCard({Key key, this.product, this.onTap, this.maskedValue})
+      : super(key: key);
   @override
   Widget build(BuildContext context) => Card(
         child: ListTile(
           leading: (product.imgUrl != null)
-              ? Image.network(product.imgUrl)
+              ? Image.network(
+                  product.imgUrl,
+                  width: 60,
+                  fit: BoxFit.fitHeight,
+                )
+              /*
+AspectRatio(
+          aspectRatio: 487 / 451,
+          child: new Container(
+            decoration: new BoxDecoration(
+              image: new DecorationImage(
+                fit: BoxFit.fitWidth,
+                alignment: FractionalOffset.topCenter,
+                image: new NetworkImage('https://i.stack.imgur.com/lkd0a.png'),
+
+                */
               : Image.asset('assets/images/not-found.jpg'),
           title: Text(product.title),
-          trailing: Text(product.value.toString()),
+          trailing: Text(maskedValue(product.value)),
           subtitle: Text(product.description),
           onTap: () => onTap(product),
         ),

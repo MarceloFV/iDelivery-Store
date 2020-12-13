@@ -28,25 +28,24 @@ class ProductModel {
     this.value,
     this.isAvailable,
     this.likes,
+    // this.category,
     this.reference,
   });
 
-  Map<String, dynamic> toMap() => {
-        'imgUrl': imgUrl,
-        'title': title,
-        'description': description,
-        'value': value,
-        'isAvailable': isAvailable,
-        'likes': likes,
-      };
-
-  factory ProductModel.fromDocumentSnapshot(DocumentSnapshot snapshot) =>
-      ProductModel.fromMap(snapshot.data())
-          .copyWith(reference: snapshot.reference);
+  Map<String, dynamic> toMap() {
+    return {
+      'imgUrl': imgUrl,
+      'title': title,
+      'description': description,
+      'value': value,
+      'isAvailable': isAvailable,
+      'likes': likes,
+    };
+  }
 
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-
+  
     return ProductModel(
       imgUrl: map['imgUrl'],
       title: map['title'],
@@ -57,6 +56,12 @@ class ProductModel {
     );
   }
 
+
+  factory ProductModel.fromDocumentSnapshot(DocumentSnapshot snapshot) =>
+      ProductModel.fromMap(snapshot.data())
+          .copyWith(reference: snapshot.reference);
+
+  
   String toJson() => json.encode(toMap());
 
   factory ProductModel.fromJson(String source) =>

@@ -2,6 +2,7 @@ import 'package:delivery_store/app/data/model/product_model.dart';
 import 'package:delivery_store/app/data/repository/product_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:get/get.dart';
 
 class MenuController extends GetxController {
@@ -19,6 +20,12 @@ class MenuController extends GetxController {
     store = Get.arguments['store']; //TODO: Create persistent product list data
     _fetchProducts();
     super.onInit();
+  }
+
+  maskValue(double value) {
+    var controller = new MoneyMaskedTextController(leftSymbol: 'R\$ ');
+    controller.updateValue(value);
+    return controller.text;
   }
 
   _fetchProducts() async {

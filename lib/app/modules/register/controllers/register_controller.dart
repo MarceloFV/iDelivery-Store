@@ -5,6 +5,7 @@ import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:delivery_store/app/data/repository/auth_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -17,22 +18,20 @@ class RegisterController extends GetxController {
       : assert(authRepository != null);
 
   TextEditingController nameController = TextEditingController();
-  TextEditingController cpfController = TextEditingController();
+  var cpfController = new MaskedTextController(mask: '000.000.000-00');
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   TextEditingController titleController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController shipController = TextEditingController();
+  var phoneController = new MaskedTextController(mask: '(00) 00000-0000');
+  var shipController = new MoneyMaskedTextController(leftSymbol: 'R\$ ');
 
   TextEditingController ruaController = TextEditingController();
   TextEditingController numeroController = TextEditingController();
   TextEditingController bairroController = TextEditingController();
-  TextEditingController cepController = TextEditingController();
+  var cepController = new MaskedTextController(mask: '00000-000');
 
-//TODO: Adicionar imagem a loja
-
-File image;
+  File image;
   final picker = ImagePicker();
 
   Future getImage() async {
@@ -54,17 +53,12 @@ File image;
     StoreModel storeModel = StoreModel(
       title: titleController.text,
       phoneNumber: phoneController.text,
-      shipPrice: double.parse(shipController.text),
+      shipPrice: shipController.numberValue,
     );
 
-
-//BuPvMjoUAYPXmMhjHRGl26Smn2J2
-//RJw3kq7DiiOQ4S76YBtWjpl9rIq2
     String email = emailController.text;
     String password = passwordController.text;
-
     String uid = await authRepository.register(email, password);
-
 
     var store = await storeRepository.createStore(uid, storeModel, image);
 
@@ -73,6 +67,4 @@ File image;
     else
       print('algo deu errado'); //TODO: Definir erro
   }
-
-  
 }

@@ -31,7 +31,7 @@ class LoginView extends GetView<LoginController> {
           ),
           FlatButton(
               onPressed: () => Get.toNamed(Routes.REGISTER),
-              child: Text("Criar conta"))
+              child: Text("Cadastrar loja"))
         ]),
       ),
     );

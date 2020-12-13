@@ -4,28 +4,25 @@ import 'package:delivery_store/app/data/model/product_model.dart';
 import 'package:delivery_store/app/data/model/store_model.dart';
 import 'package:delivery_store/app/data/repository/product_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreateProductController extends GetxController {
   final ProductRepository productRepository;
-  // final StoreRepository storeRepository;
   CreateProductController({@required this.productRepository});
 
   StoreModel store;
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _valueController = TextEditingController();
-  TextEditingController get nameController => _nameController;
-  TextEditingController get descriptionController => _descriptionController;
-  TextEditingController get valueController => _valueController;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  var valueController = new MoneyMaskedTextController(leftSymbol: 'R\$ ');
 
   final haveImage = false.obs;
-  
+
   File image;
   final picker = ImagePicker();
-
+//TODO: Create (Loading while creating)
   Future getImage() async {
     //TODO: Resolver bug de troca de imagem(nao troca)
     final pickedFile = await picker.getImage(
@@ -50,13 +47,9 @@ class CreateProductController extends GetxController {
   }
 
   void onAddProductPressed() async {
-    
-
     ProductModel product = ProductModel(
       title: nameController.text,
-      value: double.parse(
-        valueController.text,
-      ),
+      value: valueController.numberValue,
       description: descriptionController.text,
       isAvailable: true,
       likes: 0,

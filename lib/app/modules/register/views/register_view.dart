@@ -17,7 +17,7 @@ class RegisterView extends GetView<RegisterController> {
         child: ListView(
           children: [
             Text(
-              'Dados: ',
+              'Dados do usuário: ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
             ),
             TextFormField(
@@ -28,6 +28,11 @@ class RegisterView extends GetView<RegisterController> {
               controller: controller.cpfController,
               decoration: InputDecoration(hintText: "CPF"),
               keyboardType: TextInputType.number,
+            ),
+            TextFormField(
+              controller: controller.phoneController,
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(hintText: "Telefone Pessoal"),
             ),
             TextFormField(
               controller: controller.emailController,

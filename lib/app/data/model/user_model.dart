@@ -7,8 +7,7 @@ class UserModel {
   final String cpf;
   final String email;
   final String phone;
-  final Address adress;
-  DocumentReference store;
+  final Address address;
   DocumentReference reference;
 
   UserModel({
@@ -16,46 +15,14 @@ class UserModel {
     this.cpf,
     this.email,
     this.phone,
-    this.adress,
-    this.store,
+    this.address,
     this.reference,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'cpf': cpf,
-      'phone': phone,
-      'email': email,
-      'adress': adress?.toMap(),
-    };
-  }
-
   factory UserModel.fromDocumentSnapshot(DocumentSnapshot snapshot) =>
       UserModel.fromMap(snapshot.data()).copyWith(
-          reference: snapshot.reference, store: snapshot.data()['store']);
-
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
-    return UserModel(
-      name: map['name'],
-      cpf: map['cpf'],
-      phone: map['phone'],
-      email: map['email'],
-      adress: Address.fromMap(map['adress']),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source));
-
-  @override
-  String toString() {
-    return 'UserModel(name: $name, cpf: $cpf, email: $email, phone: $phone, reference: $reference)';
-  }
+        reference: snapshot.reference,
+      );
 
   UserModel copyWith({
     String name,
@@ -63,7 +30,6 @@ class UserModel {
     String email,
     String phone,
     Address adress,
-    DocumentReference store,
     DocumentReference reference,
   }) {
     return UserModel(
@@ -71,11 +37,37 @@ class UserModel {
       cpf: cpf ?? this.cpf,
       email: email ?? this.email,
       phone: phone ?? this.phone,
-      adress: adress ?? this.adress,
-      store: store ?? this.store,
+      address: adress ?? this.address,
       reference: reference ?? this.reference,
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'cpf': cpf,
+      'email': email,
+      'phone': phone,
+      'adress': address?.toMap(),
+    };
+  }
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+
+    return UserModel(
+      name: map['name'],
+      cpf: map['cpf'],
+      email: map['email'],
+      phone: map['phone'],
+      address: Address.fromMap(map['adress']),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source));
 }
 
 class Address {

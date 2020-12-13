@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:delivery_store/app/data/model/store_model.dart';
+import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:delivery_store/app/data/repository/auth_repository.dart';
+import 'package:delivery_store/app/data/repository/user_repository.dart';
 import 'package:delivery_store/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -12,13 +14,17 @@ import 'package:image_picker/image_picker.dart';
 class RegisterController extends GetxController {
   final AuthRepository authRepository;
   final StoreRepository storeRepository;
+  final UserRepository userRepository;
 
-  RegisterController(
-      {@required this.authRepository, @required this.storeRepository})
-      : assert(authRepository != null);
+  RegisterController({
+    @required this.authRepository,
+    @required this.storeRepository,
+    @required this.userRepository,
+  }) : assert(authRepository != null);
 
   TextEditingController nameController = TextEditingController();
   var cpfController = new MaskedTextController(mask: '000.000.000-00');
+  var userPhoneController = new MaskedTextController(mask: '(00) 00000-0000');
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -50,6 +56,20 @@ class RegisterController extends GetxController {
   }
 
   register() async {
+    Address address = Address(
+      rua: ruaController.text,
+      numero: numeroController.text,
+      bairro: bairroController.text,
+      cep: cepController.text,
+    );
+
+    UserModel userModel = UserModel(
+        name: nameController.text,
+        phone: userPhoneController.text,
+        cpf: cpfController.text,
+        email: emailController.text,
+        address: address);
+
     StoreModel storeModel = StoreModel(
       title: titleController.text,
       phoneNumber: phoneController.text,
@@ -61,6 +81,8 @@ class RegisterController extends GetxController {
     String uid = await authRepository.register(email, password);
 
     var store = await storeRepository.createStore(uid, storeModel, image);
+
+    userRepository.create(store, userModel);
 
     if (store != null)
       Get.offAllNamed(Routes.HOME, arguments: {'store': store});

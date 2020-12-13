@@ -7,7 +7,7 @@ class StoreModel {
   String title;
   String phoneNumber;
   double shipPrice;
-
+  bool isOpen;
   DocumentReference reference;
 
   StoreModel({
@@ -15,6 +15,7 @@ class StoreModel {
     this.title,
     this.phoneNumber,
     this.shipPrice,
+    this.isOpen,
     this.reference,
   });
 
@@ -28,17 +29,19 @@ class StoreModel {
       'title': title,
       'phoneNumber': phoneNumber,
       'shipPrice': shipPrice,
+      'isOpen': isOpen,
     };
   }
 
   factory StoreModel.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-
+  
     return StoreModel(
       imgUrl: map['imgUrl'],
       title: map['title'],
       phoneNumber: map['phoneNumber'],
       shipPrice: map['shipPrice'],
+      isOpen: map['isOpen'],
     );
   }
 
@@ -52,6 +55,7 @@ class StoreModel {
     String title,
     String phoneNumber,
     double shipPrice,
+    bool isOpen,
     DocumentReference reference,
   }) {
     return StoreModel(
@@ -59,12 +63,13 @@ class StoreModel {
       title: title ?? this.title,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       shipPrice: shipPrice ?? this.shipPrice,
+      isOpen: isOpen ?? this.isOpen,
       reference: reference ?? this.reference,
     );
   }
 
   @override
   String toString() {
-    return 'StoreModel(imgUrl: $imgUrl, title: $title, phoneNumber: $phoneNumber, shipPrice: $shipPrice, reference: $reference)';
+    return 'StoreModel(imgUrl: $imgUrl, title: $title, phoneNumber: $phoneNumber, shipPrice: $shipPrice, isOpen: $isOpen, reference: $reference)';
   }
 }

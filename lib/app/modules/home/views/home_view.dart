@@ -13,15 +13,27 @@ class HomeView extends GetView<HomeController> {
       drawer: _drawer(),
       body: Container(
         child: Center(
-          child: Obx(() => ElevatedButton(
-                child: controller.isOpen.value
-                    ? Text('Fechar loja')
-                    : Text('Abrir loja'),
-                style: controller.isOpen.value
-                    ? ElevatedButton.styleFrom(primary: Colors.red)
-                    : null,
-                onPressed: controller.onOpenCloseStorePressed,
-              )),
+          child: Column(
+            children: [
+              Obx(
+                () => ElevatedButton(
+                  child: controller.isOpen.value
+                      ? Text('Fechar loja')
+                      : Text('Abrir loja'),
+                  style: controller.isOpen.value
+                      ? ElevatedButton.styleFrom(primary: Colors.red)
+                      : null,
+                  onPressed: controller.onOpenCloseStorePressed,
+                ),
+              ),
+              Obx(
+                () => ElevatedButton(
+                  child: Text('Abrir dashboard'),
+                  onPressed: controller.isOpen.value ? controller.onOpenDashboardPressed() : null,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -51,14 +63,13 @@ class HomeView extends GetView<HomeController> {
               onTap: controller.onDrawerMenuPressed,
             ),
 
-
             // ListTile(
             //   leading: Icon(Icons.history),
             //   title: Text('Histórico de pedidos'),
             //   onTap: () {
             //   },
             // ),
-          
+
             // ListTile(
             //   leading: Icon(Icons.store),
             //   title: Text('Loja'),

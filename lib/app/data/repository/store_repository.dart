@@ -13,4 +13,8 @@ class StoreRepository {
       provider.create(uid, store, image);
 
   Future<StoreModel> read(String uid) => provider.read(uid);
+
+  void open(StoreModel store) => provider.open(store);
+  
+  void close(StoreModel store) => provider.close(store);
 }

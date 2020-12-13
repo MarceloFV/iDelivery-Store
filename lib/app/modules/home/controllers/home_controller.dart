@@ -1,3 +1,4 @@
+import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:get/get.dart';
 
 import 'package:delivery_store/app/data/model/store_model.dart';
@@ -7,8 +8,12 @@ import 'package:meta/meta.dart';
 
 class HomeController extends GetxController {
   final AuthRepository authRepository;
+  final StoreRepository storeRepository;
 
-  HomeController({@required this.authRepository});
+  HomeController({
+    @required this.authRepository,
+    @required this.storeRepository,
+  });
 
   StoreModel store;
 
@@ -20,6 +25,12 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onClose() {
+    _closeStore();
+    super.onClose();
+  }
+
   onOpenCloseStorePressed() {
     isOpen.toggle();
     if (isOpen.value)
@@ -28,15 +39,23 @@ class HomeController extends GetxController {
       return _closeStore();
   }
 
-  _openStore() {
+  onOpenDashboardPressed() {
+    //TODO: Implement onOpenDashboardPressed
   }
 
-  _closeStore() {
-  }
 
   onDrawerMenuPressed() {
-    Get.toNamed(Routes.MENU, arguments: {'store': store});
+    Get.toNamed(
+      Routes.MENU,
+      arguments: {
+        'store': store,
+      },
+    );
   }
+
+  _openStore() => storeRepository.open(store);
+
+  _closeStore() => storeRepository.close(store);
 
   onLogoutPressed() {
     authRepository.logout();

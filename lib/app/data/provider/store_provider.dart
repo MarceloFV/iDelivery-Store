@@ -39,7 +39,7 @@ class StoreProvider {
 
       store = store.copyWith(imgUrl: url, reference: ref);
       await store.reference.update({'imgUrl': store.imgUrl});
-      
+
       status = StoreStatus.Created;
       return store;
     } catch (e) {
@@ -99,4 +99,8 @@ Future<ProductModel> add(
       return StoreStatus.Error;
     }
   }
+
+  open(StoreModel store) => store.reference.update({'isOpen': true});
+  
+  close(StoreModel store) => store.reference.update({'isOpen': false});
 }

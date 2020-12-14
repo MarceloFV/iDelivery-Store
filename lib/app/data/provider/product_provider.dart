@@ -26,17 +26,22 @@ class ProductProvider {
 
   Future<ProductModel> create(
       StoreModel store, ProductModel product, File img) async {
+    print('ainda ta aq');
     product = await store.reference
         .collection(collectionPath)
         .add(product.toMap())
         .then((ref) => product.copyWith(reference: ref));
-    String imgPath =
-        'stores/${store.reference.id}/products/${product.reference.id}/1.jpg';
-    var imgRef = storage.ref(imgPath);
-    await imgRef.putFile(img);
-    var url = await imgRef.getDownloadURL();
-    await product.reference.update({'imgUrl': url});
-    product = product.copyWith(imgUrl: url);
+
+    print('chegou aq');
+    if (img != null) {
+      String imgPath =
+          'stores/${store.reference.id}/products/${product.reference.id}/1.jpg';
+      var imgRef = storage.ref(imgPath);
+      await imgRef.putFile(img);
+      var url = await imgRef.getDownloadURL();
+      await product.reference.update({'imgUrl': url});
+      product = product.copyWith(imgUrl: url);
+    }
     return product;
   }
 

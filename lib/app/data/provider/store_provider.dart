@@ -30,41 +30,24 @@ class StoreProvider {
     try {
       var ref = firestore.collection(collectionPath).doc(uid);
       await ref.set(store.toMap());
+      store = store.copyWith(reference: ref);
 
-      String imgPath = 'stores/${ref.id}/img.jpg';
-      var imgRef = storage.ref(imgPath);
+      if (image != null) {
+        String imgPath = 'stores/${ref.id}/img.jpg';
+        var imgRef = storage.ref(imgPath);
+        await imgRef.putFile(image);
+        var url = await imgRef.getDownloadURL();
 
-      await imgRef.putFile(image);
-      var url = await imgRef.getDownloadURL();
+        store = store.copyWith(imgUrl: url);
+        await store.reference.update({'imgUrl': store.imgUrl});
+      }
 
-      store = store.copyWith(imgUrl: url, reference: ref);
-      await store.reference.update({'imgUrl': store.imgUrl});
-
-      status = StoreStatus.Created;
       return store;
     } catch (e) {
-      status = StoreStatus.Error;
       return null;
     }
   }
 
-/*
-Future<ProductModel> add(
-      StoreModel store, ProductModel product, File img) async {
-    product = await store.reference
-        .collection(collectionPath)
-        .add(product.toMap())
-        .then((ref) => product.copyWith(reference: ref));
-    String imgPath =
-        'stores/${store.reference.id}/products/${product.reference.id}/1.jpg';
-    var imgRef = storage.ref(imgPath);
-    await imgRef.putFile(img);
-    var url = await imgRef.getDownloadURL();
-    await product.reference.update({'imgUrl': url});
-    product = product.copyWith(imgUrl: url);
-    return product;
-  }
-*/
   Future<StoreModel> update(StoreModel storeModel) async {
     try {
       await storeModel.reference.update(storeModel.toMap());
@@ -79,10 +62,8 @@ Future<ProductModel> add(
   Future<StoreModel> read(String uid) async {
     try {
       var snap = await firestore.collection(collectionPath).doc(uid).get();
-      status = StoreStatus.Active;
       return StoreModel.fromDocumentSnapshot(snap);
     } catch (e) {
-      status = StoreStatus.Error;
       return null;
     }
   }
@@ -101,6 +82,6 @@ Future<ProductModel> add(
   }
 
   open(StoreModel store) => store.reference.update({'isOpen': true});
-  
+
   close(StoreModel store) => store.reference.update({'isOpen': false});
 }

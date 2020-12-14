@@ -10,4 +10,5 @@ abstract class Routes {
   static const PRODUCT = '/product';
   static const EDIT_PRODUCT = '/edit-product';
   static const CREATE_PRODUCT = '/create-product';
+  static const DEBUG = '/debug';
 }

@@ -30,7 +30,7 @@ class RegisterView extends GetView<RegisterController> {
               keyboardType: TextInputType.number,
             ),
             TextFormField(
-              controller: controller.phoneController,
+              controller: controller.userPhoneController,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(hintText: "Telefone Pessoal"),
             ),

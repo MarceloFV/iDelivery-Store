@@ -64,11 +64,12 @@ class RegisterController extends GetxController {
     );
 
     UserModel userModel = UserModel(
-        name: nameController.text,
-        phone: userPhoneController.text,
-        cpf: cpfController.text,
-        email: emailController.text,
-        address: address);
+      name: nameController.text,
+      phone: userPhoneController.text,
+      cpf: cpfController.text,
+      email: emailController.text,
+      address: address,
+    );
 
     StoreModel storeModel = StoreModel(
       title: titleController.text,
@@ -79,10 +80,11 @@ class RegisterController extends GetxController {
     String email = emailController.text;
     String password = passwordController.text;
     String uid = await authRepository.register(email, password);
+    // String mockedUID = 'sduhisaduhdsaiuhsd'; //TODO: Exclude
 
     var store = await storeRepository.createStore(uid, storeModel, image);
 
-    userRepository.create(store, userModel);
+    await userRepository.create(store, userModel);
 
     if (store != null)
       Get.offAllNamed(Routes.HOME, arguments: {'store': store});

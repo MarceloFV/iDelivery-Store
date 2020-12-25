@@ -16,7 +16,7 @@ void main(List<String> args) async {
   const useFirebaseEmulator = true;
   const isVirtualDevice = false;
 
-  String host = isVirtualDevice ? '10.0.0.2' : '192.168.1.101:5003';
+  String host = isVirtualDevice ? '10.0.0.2:5003' : '192.168.1.101:5003';
 
   if (useFirebaseEmulator)
     FirebaseFirestore.instance.settings = Settings(
@@ -27,7 +27,7 @@ void main(List<String> args) async {
 
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "Delivery Store",
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

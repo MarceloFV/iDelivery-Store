@@ -8,37 +8,30 @@ import 'package:get/get.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() async {
+void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
 
-  bool isDebug = true;
+  const useFirebaseEmulator = true;
+  const isVirtualDevice = false;
 
-  if (isDebug) {
+  String host = isVirtualDevice ? '10.0.0.2' : '192.168.1.101:5003';
+
+  if (useFirebaseEmulator)
     FirebaseFirestore.instance.settings = Settings(
-      host: '192.168.1.106:5003', //TODO: Testar localhost
+      host: host,
       sslEnabled: false,
-      // persistenceEnabled: false,
+      persistenceEnabled: false,
     );
-    runApp(
-      GetMaterialApp(
-        title: "Application",
-        debugShowCheckedModeBanner: false,
-        initialRoute: AppPages.DEBUG,
-        getPages: AppPages.routes,
-        enableLog: false,
-      ),
-    );
-  } else {
-    runApp(
-      GetMaterialApp(
-        title: "Application",
-        debugShowCheckedModeBanner: false,
-        initialRoute: AppPages.INITIAL,
-        getPages: AppPages.routes,
-        enableLog: false,
-      ),
-    );
-  }
+
+  runApp(
+    GetMaterialApp(
+      title: "Application",
+      debugShowCheckedModeBanner: false,
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+      enableLog: false,
+    ),
+  );
 }

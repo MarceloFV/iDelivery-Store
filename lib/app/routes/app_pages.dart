@@ -1,5 +1,3 @@
-import 'package:delivery_store/app/modules/debug/views/debug_view.dart';
-import 'package:delivery_store/app/modules/debug/bindings/debug_binding.dart';
 import 'package:delivery_store/app/modules/menu/bindings/menu_binding.dart';
 import 'package:delivery_store/app/modules/menu/modules/create_product/bindings/create_product_binding.dart';
 import 'package:delivery_store/app/modules/menu/modules/create_product/views/create_product_view.dart';
@@ -23,7 +21,6 @@ part 'app_routes.dart';
 
 class AppPages {
   static const INITIAL = Routes.SPLASH;
-  static const DEBUG = Routes.DEBUG;
   static final routes = [
     GetPage(
       name: Routes.HOME,
@@ -62,6 +59,7 @@ class AppPages {
           binding: ProductBinding(),
           transition: Transition.rightToLeft,
         ),
+        //TODO: Create and edit product must be the same page
         GetPage(
           name: Routes.CREATE_PRODUCT,
           page: () => CreateProductView(),
@@ -76,10 +74,6 @@ class AppPages {
         ),
       ],
     ),
-    GetPage(
-      name: Routes.DEBUG, 
-      page:()=> DebugView(), 
-      binding: DebugBinding(),
-    ),
+   
   ];
 }

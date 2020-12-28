@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:delivery_store/app/data/model/store_model.dart';
+import 'package:delivery_store/app/data/model/store.dart';
 import 'package:delivery_store/app/data/model/user_model.dart';
 import 'package:delivery_store/app/data/repository/store_repository.dart';
 import 'package:delivery_store/app/data/repository/auth_repository.dart';
@@ -56,7 +56,7 @@ class RegisterController extends GetxController {
   }
 
   register() async {
-    Address address = Address(
+    AddressModel address = AddressModel(
       rua: ruaController.text,
       numero: numeroController.text,
       bairro: bairroController.text,

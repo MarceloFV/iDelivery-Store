@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:delivery_store/app/data/model/product_model.dart';
-import 'package:delivery_store/app/data/model/store_model.dart';
+import 'package:delivery_store/app/data/model/store.dart';
 import 'package:delivery_store/app/data/repository/product_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';

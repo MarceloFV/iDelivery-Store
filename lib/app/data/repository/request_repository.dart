@@ -7,6 +7,6 @@ final RequestProvider provider;
 
 RequestRepository({@required this.provider}) : assert(provider != null);
 
-getStream(String uid) => provider.requestListStream(uid);
+// getStream(String uid) => provider.requestListStream(uid);
 
 }

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:delivery_store/app/data/model/store_model.dart';
+import 'package:delivery_store/app/data/model/store.dart';
 import 'package:delivery_store/app/data/provider/store_provider.dart';
 import 'package:meta/meta.dart';
 

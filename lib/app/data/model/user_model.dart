@@ -7,7 +7,7 @@ class UserModel {
   final String cpf;
   final String email;
   final String phone;
-  final Address address;
+  final AddressModel address;
   DocumentReference reference;
 
   UserModel({
@@ -29,7 +29,7 @@ class UserModel {
     String cpf,
     String email,
     String phone,
-    Address adress,
+    AddressModel adress,
     DocumentReference reference,
   }) {
     return UserModel(
@@ -60,7 +60,7 @@ class UserModel {
       cpf: map['cpf'],
       email: map['email'],
       phone: map['phone'],
-      address: Address.fromMap(map['adress']),
+      address: AddressModel.fromMap(map['adress']),
     );
   }
 
@@ -70,13 +70,13 @@ class UserModel {
       UserModel.fromMap(json.decode(source));
 }
 
-class Address {
+class AddressModel {
   final String bairro;
   final String rua;
   final String numero;
   final String cep;
 
-  Address({this.bairro, this.rua, this.numero, this.cep});
+  AddressModel({this.bairro, this.rua, this.numero, this.cep});
 
   Map<String, dynamic> toMap() {
     return {
@@ -87,10 +87,10 @@ class Address {
     };
   }
 
-  factory Address.fromMap(Map<String, dynamic> map) {
+  factory AddressModel.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
 
-    return Address(
+    return AddressModel(
       bairro: map['bairro'],
       rua: map['rua'],
       numero: map['numero'],
@@ -100,6 +100,6 @@ class Address {
 
   String toJson() => json.encode(toMap());
 
-  factory Address.fromJson(String source) =>
-      Address.fromMap(json.decode(source));
+  factory AddressModel.fromJson(String source) =>
+      AddressModel.fromMap(json.decode(source));
 }

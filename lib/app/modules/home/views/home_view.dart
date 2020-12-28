@@ -29,7 +29,7 @@ class HomeView extends GetView<HomeController> {
               Obx(
                 () => ElevatedButton(
                   child: Text('Abrir dashboard'),
-                  onPressed: controller.isOpen.value ? controller.onOpenDashboardPressed() : null,
+                  onPressed: controller.isOpen.value ? controller.onOpenDashboardPressed : null,
                 ),
               ),
             ],

@@ -11,22 +11,7 @@ class RequestProvider {
     @required this.firestore,
   });
 
-  Stream<List<RequestModel>> requestStream(StoreModel store) {
-    store.reference.collection(collectionPath).snapshots();
-    //TODO: CONVERT TO STREAM OF LIST OF REQUEST
-  }
-
-  // Stream<List<RequestModel>> requestListStream(String uid) {
-  //   return firestore
-  //       .collection(collectionPath)
-  //       .where('store', isEqualTo: uid)
-  //       .snapshots()
-  //       .map((snap) {
-  //     List<RequestModel> requestList;
-  //     snap.docs.forEach((element) {
-  //       requestList.add(RequestModel.fromDocumentSnapshot(element));
-  //     });
-  //     return requestList;
-  //   });
-  // }
+  Stream<List<RequestModel>> requestStream(StoreModel store) =>
+      store.reference.collection(collectionPath).snapshots().map((event) =>
+          event.docs.map((e) => RequestModel.fromDocumentSnapshot(e)).toList());
 }

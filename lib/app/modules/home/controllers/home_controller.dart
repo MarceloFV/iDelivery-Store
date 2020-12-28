@@ -40,9 +40,9 @@ class HomeController extends GetxController {
   }
 
   onOpenDashboardPressed() {
+    Get.toNamed(Routes.REQUEST, arguments: {'store': store});
     //TODO: Implement onOpenDashboardPressed
   }
-
 
   onDrawerMenuPressed() {
     Get.toNamed(

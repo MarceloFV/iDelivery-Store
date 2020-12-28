@@ -7,8 +7,8 @@ import 'package:delivery_store/app/modules/request/controllers/request_controlle
 class RequestBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<RequestController>(
-      () => RequestController(
+    Get.put<RequestController>(
+      RequestController(
         repository: RequestRepository(
           provider: RequestProvider(
             firestore: FirebaseFirestore.instance,

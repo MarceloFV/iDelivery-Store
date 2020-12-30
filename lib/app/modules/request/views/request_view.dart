@@ -11,13 +11,15 @@ class RequestView extends GetView<RequestController> {
         title: Text('RequestView'),
         centerTitle: true,
       ),
-      body: Obx(() => ListView(
-            children: controller.requestList.value
-                .map((mod) => RequestCard(
-                      model: mod,
-                    ))
-                .toList(),
-          )),
+      body: Obx(
+        () => ListView(
+          children: controller.requestList.value
+              .map((mod) => RequestCard(
+                    model: mod,
+                  ))
+              .toList(),
+        ),
+      ),
     );
   }
 }
@@ -29,8 +31,10 @@ class RequestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(model.user.name),
+    return Card(
+      child: ListTile(
+        title: Text(model.user.name),
+      ),
     );
   }
 }

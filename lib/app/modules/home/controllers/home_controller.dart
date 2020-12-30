@@ -22,11 +22,13 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     store = Get.arguments['store'];
+    isOpen.value = store.isOpen;
     super.onInit();
   }
 
   @override
   void onClose() {
+    print('porra, fecha ai');
     _closeStore();
     super.onClose();
   }

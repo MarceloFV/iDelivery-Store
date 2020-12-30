@@ -40,13 +40,18 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Card(
         child: ListTile(
-          leading: (product.imgUrl != null)
-              ? Image.network(
-                  product.imgUrl,
-                  width: 60,
-                  fit: BoxFit.fitHeight,
-                )
-              /*
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: (product.imgUrl != null)
+                ? Image.network(
+                    product.imgUrl,
+                    width: 60,
+                    fit: BoxFit.fitHeight,
+                  )
+                : Image.asset('assets/images/not-found.jpg'),
+          ),
+
+          /*
 AspectRatio(
           aspectRatio: 487 / 451,
           child: new Container(
@@ -57,7 +62,6 @@ AspectRatio(
                 image: new NetworkImage('https://i.stack.imgur.com/lkd0a.png'),
 
                 */
-              : Image.asset('assets/images/not-found.jpg'),
           title: Text(product.title),
           trailing: Text(maskedValue(product.value)),
           subtitle: Text(product.description),

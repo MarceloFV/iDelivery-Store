@@ -16,7 +16,7 @@ void main(List<String> args) async {
   const useFirebaseEmulator = true;
   const isVirtualDevice = false;
 
-  String host = isVirtualDevice ? '10.0.0.2:9090' : '192.168.1.101:9090';
+  String host = isVirtualDevice ? '10.0.0.2:9091' : '192.168.1.101:9091';
 
   if (useFirebaseEmulator)
     FirebaseFirestore.instance.settings = Settings(
